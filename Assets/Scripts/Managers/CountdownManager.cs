@@ -28,6 +28,8 @@ public class CountdownManager : Singleton<CountdownManager>
         EventManager.Instance.OnCountdownEnd.Invoke(actual);
     }
 
+    public float GetRemainingSeconds => running ? actual : 0;
+
     private void Update()
     {
         if(!running)

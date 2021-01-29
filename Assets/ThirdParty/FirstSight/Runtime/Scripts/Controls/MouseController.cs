@@ -1,6 +1,5 @@
 using UnityEngine;
-
-#pragma warning disable CS0649
+using System.Collections;
 
 namespace WraithavenGames.FirstSight
 {
@@ -19,6 +18,9 @@ namespace WraithavenGames.FirstSight
         private float LookX { get { return inputSettings == null ? 0f : inputSettings.LookX; } }
         private float LookY { get { return inputSettings == null ? 0f : inputSettings.LookY; } }
 
+        private float LookXOffset;
+        private float LookYOffset;
+
         private void OnEnable()
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -36,10 +38,11 @@ namespace WraithavenGames.FirstSight
             if (cam == null)
                 return;
 
-            yaw += LookX * Time.unscaledDeltaTime;
-            pitch -= LookY * Time.unscaledDeltaTime;
+            yaw += LookX;
+            pitch -= LookY;
 
             yaw %= 360f;
+            
             pitch = Mathf.Clamp(pitch, -89f, 89f);
 
             transform.localRotation = Quaternion.Euler(0f, yaw, 0f);

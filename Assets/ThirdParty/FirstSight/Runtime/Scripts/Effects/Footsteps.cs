@@ -50,6 +50,7 @@ namespace WraithavenGames.FirstSight
             wasGrounded = true;
             lastLandingTime = float.MinValue;
             lastJumpingTime = float.MinValue;
+            lastPosition = transform.position;
         }
 
         private void Update()

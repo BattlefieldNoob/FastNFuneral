@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4904770059497234, guid: e6e1f325a3646a94182db0ac798354a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.79
+      value: 1.84
       objectReference: {fileID: 0}
     - target: {fileID: 4904770059497234, guid: e6e1f325a3646a94182db0ac798354a9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4904770059497234, guid: e6e1f325a3646a94182db0ac798354a9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.48
+      value: 5.89
       objectReference: {fileID: 0}
     - target: {fileID: 4904770059497234, guid: e6e1f325a3646a94182db0ac798354a9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -58,6 +58,14 @@ PrefabInstance:
     - target: {fileID: 4904770059497234, guid: e6e1f325a3646a94182db0ac798354a9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114471294834788224, guid: e6e1f325a3646a94182db0ac798354a9, type: 3}
+      propertyPath: camX.sensitivity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114471294834788224, guid: e6e1f325a3646a94182db0ac798354a9, type: 3}
+      propertyPath: camY.sensitivity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114483260231353832, guid: e6e1f325a3646a94182db0ac798354a9, type: 3}
       propertyPath: landingSounds.Array.size
