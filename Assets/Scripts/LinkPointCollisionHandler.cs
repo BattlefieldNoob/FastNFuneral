@@ -1,19 +1,28 @@
+using System;
 using UnityEngine;
 
 public class LinkPointCollisionHandler : MonoBehaviour
 {
     public LinkPoint LinkCandidate;
+    public Collider _Collider;
 
     private bool isEnabled = false;
-    
+
+    private void Start()
+    {
+        _Collider = GetComponent<Collider>();
+    }
+
     public void Enable()
     {
         isEnabled = true;
+        _Collider.enabled = true;
     }
     
     public void Disable()
     {
         isEnabled = false;
+        _Collider.enabled = false;
         LinkCandidate = null;
     }
     
@@ -26,6 +35,7 @@ public class LinkPointCollisionHandler : MonoBehaviour
         {
             //Debug.Log("Collided with linkpoint!");
             var newLink=other.GetComponent<LinkPoint>();
+            
             
             if(newLink==null)
                 return;
