@@ -9,19 +9,21 @@ public class EventManager : Singleton<EventManager>
 
     
     //float contains time remained in seconds
-    public class CountdownEndEvent : UnityEvent<float>
+    public class FloatEvent : UnityEvent<float>
     {
         
     }
 
 
-    public CountdownEndEvent OnCountdownEnd;
+    public FloatEvent OnCountdownEnd;
+    public FloatEvent OnSpeedChange;
 
 
     protected new void Awake()
     {
         base.Awake();
-        OnCountdownEnd = new CountdownEndEvent();
+        OnCountdownEnd = new FloatEvent();
+        OnSpeedChange = new FloatEvent();
     }
     
 
