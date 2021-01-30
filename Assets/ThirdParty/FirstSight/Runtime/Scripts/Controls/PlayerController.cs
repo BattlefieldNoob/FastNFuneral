@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 #pragma warning disable CS0649
@@ -96,6 +97,11 @@ namespace WraithavenGames.FirstSight
             return false;
         }
 
+        private void Start()
+        {
+            EventManager.Instance.OnSpeedChange.AddListener(ChangeSpeed);
+        }
+
         private bool IsAboutToLandOrGrounded()
         {
             if (vel.y >= 0f)
@@ -181,6 +187,11 @@ namespace WraithavenGames.FirstSight
 
             // Move character
             controller.Move(vel * Time.deltaTime);
+        }
+
+        private void ChangeSpeed(float targetSpeed)
+        {
+            moveSpeed = targetSpeed;
         }
     }
 }
