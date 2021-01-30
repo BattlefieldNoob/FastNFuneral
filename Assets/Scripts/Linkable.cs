@@ -1,18 +1,20 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Linkable : MonoBehaviour
 {
     [SerializeField] private LinkPoint primaryLinkPoint;
-    [SerializeField] private LinkPoint[] secondaryLinkPoints;
+    private List<Linkable> _linkables;
     private Rigidbody _rigidbody;
 
 
     private LinkPoint primaryLinkedWith;
 
-    public bool IsLinked => primaryLinkedWith!=null || primaryLinkPoint!=null;
+    public bool IsLinked => primaryLinkedWith != null || primaryLinkPoint != null;
 
     private void Start()
     {
+        _linkables = new List<Linkable>();
         _rigidbody = GetComponent<Rigidbody>();
         var parent = GetComponentInParent<LinkPoint>();
         if (parent != null)
@@ -20,14 +22,25 @@ public class Linkable : MonoBehaviour
             LinkTo(parent);
         }
     }
-    
+
+    public void AddLinked(Linkable linkedObject)
+    {
+        _linkables.Add(linkedObject);
+    }
+
+    public void RemoveLinked(Linkable linkedObject)
+    {
+        if (_linkables.Contains(linkedObject))
+            _linkables.Remove(linkedObject);
+    }
+
 
     //Link Primary to another gameObject
     public void LinkTo(LinkPoint linkToObject)
     {
-        if(primaryLinkPoint==null)
+        if (primaryLinkPoint == null)
             return;
-        
+
         primaryLinkedWith = linkToObject;
         primaryLinkedWith.SetAsLinked();
         transform.SetParent(primaryLinkedWith.GetAttachJoint());
@@ -36,20 +49,20 @@ public class Linkable : MonoBehaviour
         primaryLinkPoint.Disable();
         primaryLinkedWith.Disable();
         _rigidbody.isKinematic = true;
-        
+        linkToObject.GetComponentInParent<Linkable>().AddLinked(this);
     }
 
     public void Unlink()
     {
-        if(primaryLinkedWith==null)
+        if (primaryLinkedWith == null)
             return;
-        
+
+        primaryLinkedWith.GetComponentInParent<Linkable>().RemoveLinked(this);
         primaryLinkPoint.Enable();
         primaryLinkedWith.Enable();
         primaryLinkedWith.SetAsReleased();
         primaryLinkedWith = null;
         _rigidbody.isKinematic = false;
-        transform.SetParent(null);
+        transform.SetParent(null); 
     }
-    
 }
