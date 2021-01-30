@@ -9,42 +9,45 @@ using Random = UnityEngine.Random;
 
 public class RelativesManager : Singleton<RelativesManager>
 {
-
     [SerializeField] private GameObject[] RelativesSpawnPoints;
 
     [SerializeField] private int spawnPointsNumber = 4;
 
     [SerializeField] private GameObject[] relatives;
-    
+
     [SerializeField] private int maxRelativesPerGroup = 3;
 
     [SerializeField] private float distance = 1;
 
     private int _minRelativesPerGroup = 2;
+
     void Start()
     {
         if (maxRelativesPerGroup < _minRelativesPerGroup)
             maxRelativesPerGroup = _minRelativesPerGroup;
-        SpawnRelativesGroups();   
-        if(spawnPointsNumber>= RelativesSpawnPoints.Length)
+        SpawnRelativesGroups();
+        if (spawnPointsNumber >= RelativesSpawnPoints.Length)
             Application.Quit();
     }
-
 
 
     private void SpawnRelativesGroups()
     {
         var randomSort = RelativesSpawnPoints.OrderBy(a => Guid.NewGuid()).ToList();
-        for (var i = 0; i < spawnPointsNumber; i++)
+        var spawnIndex = 0;
+        foreach (var spawnPoint in randomSort)
         {
-            var spawnPoint = randomSort[i];
-            SpawnRelativeGroup(spawnPoint.transform);
+            if (spawnIndex <= spawnPointsNumber)
+                SpawnRelativeGroup(spawnPoint.transform);
+            else
+                spawnPoint.SetActive(false);
+            spawnIndex++;
         }
     }
 
     private void SpawnRelativeGroup(Transform spawnCenter)
     {
-        spawnCenter.rotation=Quaternion.Euler(Vector3.Scale(Random.insideUnitSphere,new Vector3(0,360,0)));
+        spawnCenter.rotation = Quaternion.Euler(Vector3.Scale(Random.insideUnitSphere, new Vector3(0, 360, 0)));
         var center = spawnCenter.position;
         var relativesNumber = Random.Range(_minRelativesPerGroup, maxRelativesPerGroup + 1);
         for (var i = 0; i < relativesNumber; i++)
@@ -67,6 +70,6 @@ public class RelativesManager : Singleton<RelativesManager>
     {
         var unit = 360 / total;
         var angle = unit * index;
-        return new Vector3(distance * Mathf.Cos(angle*Mathf.Deg2Rad), 0, distance * Mathf.Sin(angle*Mathf.Deg2Rad));
+        return new Vector3(distance * Mathf.Cos(angle * Mathf.Deg2Rad), 0, distance * Mathf.Sin(angle * Mathf.Deg2Rad));
     }
 }
