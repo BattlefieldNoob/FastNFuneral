@@ -4,6 +4,7 @@ using UnityEngine;
 public class Linkable : MonoBehaviour
 {
     [SerializeField] private LinkPoint primaryLinkPoint;
+    [SerializeField] private LimbScriptableObject limbInfo;
     private List<Linkable> _linkables = new List<Linkable>();
     private Rigidbody _rigidbody;
 
@@ -73,13 +74,19 @@ public class Linkable : MonoBehaviour
         
     }
 
-    public string PrintName()
+    public string PrintMatchTree(int layer = 0)
     {
-        var ret = " " +gameObject.name;
+        var matchTree = $"{layer}: _" +gameObject.name;
+        if (Linkables.Count < 1)
+        {
+            return matchTree;
+        }
+        matchTree = matchTree + "[";
         foreach (var linkable in Linkables)
         {
-            ret += "-"+linkable.PrintName();
+            matchTree += linkable.PrintMatchTree(layer+1)+",";
         }
-        return ret;
+        matchTree = matchTree + "]";
+        return matchTree;
     }
 }
