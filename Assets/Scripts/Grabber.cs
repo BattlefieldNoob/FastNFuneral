@@ -10,6 +10,8 @@ public class Grabber : MonoBehaviour
 
     private Grabbable GrabCandidate;
 
+    private InteractableShelf InteractableShelfSelected;
+
     private Grabbable Grabbed;
 
     private LinkPoint LinkCandidate => _linkPointCollisionHandler.LinkCandidate;
@@ -27,9 +29,9 @@ public class Grabber : MonoBehaviour
         if ((other.CompareTag("Grabbable") ||
              (other.attachedRigidbody != null && other.attachedRigidbody.CompareTag("Grabbable"))) && Grabbed == null)
         {
-            var newGrabbable=other.attachedRigidbody.GetComponent<Grabbable>();
-            
-            if(newGrabbable==null)
+            var newGrabbable = other.attachedRigidbody.GetComponent<Grabbable>();
+
+            if (newGrabbable == null)
                 return;
 
             if (GrabCandidate != null && GrabCandidate != newGrabbable)
@@ -42,17 +44,44 @@ public class Grabber : MonoBehaviour
             GrabCandidate.HighLight();
             //Debug.Log("Collided with grabbable!");
         }
+
+        if (other.CompareTag("InteractableShelf"))
+        {
+            var interactable = other.GetComponent<InteractableShelf>();
+
+            if (interactable == null)
+                return;
+
+            if (InteractableShelfSelected != null)
+            {
+                InteractableShelfSelected.DoNotHighLight();
+            }
+
+            InteractableShelfSelected = interactable;
+            InteractableShelfSelected.HighLight();
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Grabbable"))
         {
-            if(GrabCandidate==null)
+            Debug.Log("REMOVING");
+            if (GrabCandidate == null)
                 return;
             //Debug.Log("Removing linkpoint!");
             GrabCandidate.DoNotHighLight();
             GrabCandidate = null;
+        }
+
+        if (other.CompareTag("InteractableShelf"))
+        {
+            if (InteractableShelfSelected == null)
+                return;
+
+            InteractableShelfSelected.DoNotHighLight();
+
+            InteractableShelfSelected = null;
         }
     }
 
@@ -100,8 +129,8 @@ public class Grabber : MonoBehaviour
     {
         var chargeAmount = Time.time - throwChargeStart;
 
-        chargeAmount = Mathf.Clamp(chargeAmount,0, 2);
-        
+        chargeAmount = Mathf.Clamp(chargeAmount, 0, 2);
+
         Grabbed.transform.SetParent(null);
         Grabbed.Released();
         _collider.enabled = true;
@@ -112,16 +141,15 @@ public class Grabber : MonoBehaviour
         if (chargeAmount > 0.5f)
         {
             //Throw!!!!
-            Grabbed.ApplyForce(transform.forward*chargeAmount);
+            Grabbed.ApplyForce(transform.forward * chargeAmount);
         }
-        
+
         Grabbed = null;
         throwChargeStart = 0;
     }
 
     private void Update()
     {
-
         if (inThrowCharge && Input.GetMouseButtonUp(0))
         {
             ReleaseAndThrow();
@@ -132,11 +160,15 @@ public class Grabber : MonoBehaviour
         if (!Input.GetMouseButtonDown(0))
             return;
 
-        if (GrabCandidate != null && Grabbed is null)
+        if (InteractableShelfSelected != null && GrabCandidate == null && Grabbed is null)
+        {
+            InteractableShelfSelected.Toggle();
+        }
+        else if (GrabCandidate != null && Grabbed is null)
         {
             Grab();
         }
-        else if (Grabbed != null && LinkCandidate != null && LinkCandidate.GetComponentInParent<Grabber>()==null)
+        else if (Grabbed != null && LinkCandidate != null && LinkCandidate.GetComponentInParent<Grabber>() == null)
         {
             //Debug.Log("Release And Link!");
             ReleaseAndLink();
