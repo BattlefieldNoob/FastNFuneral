@@ -33,7 +33,7 @@ public class Grabbable : MonoBehaviour
 
     public void ApplyForce(Vector3 direction)
     {
-        _rigidbody.AddForce(direction*10,ForceMode.Impulse);
+        _rigidbody.AddForce(direction*8,ForceMode.Impulse);
     }
 
     public void DoNotHighLight()

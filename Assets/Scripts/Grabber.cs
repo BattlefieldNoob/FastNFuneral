@@ -77,6 +77,7 @@ public class Grabber : MonoBehaviour
 
     private void ReleaseAndLink()
     {
+        Debug.Log("ReleaseAndLink");
         var linkable = Grabbed.GetComponent<Linkable>();
         if (linkable == null)
         {
@@ -97,17 +98,37 @@ public class Grabber : MonoBehaviour
 
     private void ReleaseAndThrow()
     {
+        var chargeAmount = Time.time - throwChargeStart;
+
+        chargeAmount = Mathf.Clamp(chargeAmount,0, 2);
+        
         Grabbed.transform.SetParent(null);
         Grabbed.Released();
-        Grabbed.ApplyForce(transform.forward);
-        Grabbed = null;
         _collider.enabled = true;
         EventManager.Instance.OnRelease.Invoke();
         _collider.enabled = true;
+
+        //Debug.Log("Throw distance:"+chargeAmount);
+        if (chargeAmount > 0.5f)
+        {
+            //Throw!!!!
+            Grabbed.ApplyForce(transform.forward*chargeAmount);
+        }
+        
+        Grabbed = null;
+        throwChargeStart = 0;
     }
 
     private void Update()
     {
+
+        if (inThrowCharge && Input.GetMouseButtonUp(0))
+        {
+            ReleaseAndThrow();
+            inThrowCharge = false;
+            return;
+        }
+
         if (!Input.GetMouseButtonDown(0))
             return;
 
@@ -115,7 +136,7 @@ public class Grabber : MonoBehaviour
         {
             Grab();
         }
-        else if (Grabbed != null && LinkCandidate != null)
+        else if (Grabbed != null && LinkCandidate != null && LinkCandidate.GetComponentInParent<Grabber>()==null)
         {
             //Debug.Log("Release And Link!");
             ReleaseAndLink();
@@ -123,7 +144,16 @@ public class Grabber : MonoBehaviour
         else if (Grabbed != null)
         {
             //Debug.Log("Release And Throw!");
-            ReleaseAndThrow();
+            StartThrowCharge();
         }
+    }
+
+    private float throwChargeStart = 0;
+    private bool inThrowCharge;
+
+    private void StartThrowCharge()
+    {
+        throwChargeStart = Time.time;
+        inThrowCharge = true;
     }
 }
