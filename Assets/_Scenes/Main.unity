@@ -863,6 +863,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5200552171971456520, guid: b1572d7b69f7d9e4bb7b331c2f3a5bc3, type: 3}
+      propertyPath: _handDeltaPosition.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200552171971456520, guid: b1572d7b69f7d9e4bb7b331c2f3a5bc3, type: 3}
+      propertyPath: _handDeltaPosition.y
+      value: -0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7876674015382253107, guid: b1572d7b69f7d9e4bb7b331c2f3a5bc3, type: 3}
       propertyPath: m_RootOrder
       value: 0
