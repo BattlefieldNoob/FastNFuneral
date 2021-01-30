@@ -27,7 +27,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7958023378793644465, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
       propertyPath: m_Name
-      value: AfroHair Variant
+      value: AfroHair
       objectReference: {fileID: 0}
     - target: {fileID: 7958023378793644477, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
       propertyPath: m_RootOrder
@@ -73,6 +73,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7958023378793644479, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
+      propertyPath: limbInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: e4b8580eb86186f41ac142dc6967efde, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
 --- !u!4 &6561600224947524552 stripped
