@@ -129,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1754475445947306, guid: e6e1f325a3646a94182db0ac798354a9, type: 3}
       propertyPath: m_TagString
-      value: GrabbingHand
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4363161706940778, guid: e6e1f325a3646a94182db0ac798354a9, type: 3}
       propertyPath: m_LocalPosition.y
