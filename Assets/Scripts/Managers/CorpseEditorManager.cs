@@ -17,7 +17,7 @@ public class CorpseEditorManager : Singleton<CorpseEditorManager>
     }
 
     private void ExploreBody()
-    {
-        Debug.Log("sdsdsds" + bust.PrintName());
+    {    
+        Debug.Log(bust.PrintMatchTree());
     }
 }

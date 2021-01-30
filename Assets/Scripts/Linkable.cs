@@ -74,17 +74,17 @@ public class Linkable : MonoBehaviour
         
     }
 
-    public string PrintName(int layer = 0)
+    public string PrintMatchTree(int layer = 0)
     {
-        var matchTree = $"{layer}:" +gameObject.name;
-        if (Linkables.Count < 0)
+        var matchTree = $"{layer}: _" +gameObject.name;
+        if (Linkables.Count < 1)
         {
             return matchTree;
         }
         matchTree = matchTree + "[";
         foreach (var linkable in Linkables)
         {
-            matchTree += "-"+linkable.PrintName(layer++);
+            matchTree += linkable.PrintMatchTree(layer+1)+",";
         }
         matchTree = matchTree + "]";
         return matchTree;
