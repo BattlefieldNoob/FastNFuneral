@@ -6,17 +6,21 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Grabber : MonoBehaviour
 {
+
+    [SerializeField] private LinkPointCollisionHandler _linkPointCollisionHandler;
+    
     private Grabbable GrabCandidate;
 
     private Grabbable Grabbed;
 
-    private LinkPoint LinkCandidate;
+    private LinkPoint LinkCandidate=>_linkPointCollisionHandler.LinkCandidate;
 
     private Collider _collider;
 
     private void Start()
     {
         _collider = GetComponent<Collider>();
+        _linkPointCollisionHandler.Disable();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,11 +29,6 @@ public class Grabber : MonoBehaviour
         {
             //Debug.Log("Collided with grabbable!");
             GrabCandidate = other.attachedRigidbody.GetComponent<Grabbable>();
-        }
-        else if (other.CompareTag("LinkPoint"))
-        {
-            Debug.Log("Collided with linkpoint!");
-            LinkCandidate = other.GetComponent<LinkPoint>();
         }
     }
 
@@ -45,13 +44,19 @@ public class Grabber : MonoBehaviour
 
     private void Grab()
     {
+        var linkable = GrabCandidate.GetComponent<Linkable>();
+        if (linkable != null)
+        {
+            linkable.Unlink();
+        }
         Grabbed = GrabCandidate;
         GrabCandidate = null;
         Grabbed.Grabbed();
         Grabbed.transform.SetParent(transform);
         Grabbed.transform.localPosition = Vector3.zero;
         EventManager.Instance.OnGrab.Invoke();
-        _collider.tag = "GrabbingHand";
+        _collider.enabled = false;
+        _linkPointCollisionHandler.Enable();
     }
 
     private void ReleaseAndLink()
@@ -68,10 +73,10 @@ public class Grabber : MonoBehaviour
         Grabbed.Released();
         Grabbed = null;
         EventManager.Instance.OnRelease.Invoke();
-        _collider.tag = "Hand";
+        _collider.enabled = true;
         
         linkable.LinkTo(LinkCandidate);
-        LinkCandidate = null;
+        _linkPointCollisionHandler.Disable();
     }
 
     private void ReleaseAndThrow()
@@ -82,7 +87,7 @@ public class Grabber : MonoBehaviour
         Grabbed = null;
         _collider.enabled = true;
         EventManager.Instance.OnRelease.Invoke();
-        _collider.tag = "Hand";
+        _collider.enabled = true;
     }
 
     private void Update()

@@ -8,8 +8,11 @@ public class LinkPoint : MonoBehaviour
     private Collider _collider;
     private CanvasGroup _canvasGroup;
     [SerializeField] private Image highlight;
+    [SerializeField] private GameObject Joint;
 
     private Linkable _linkable;
+
+    private bool _isLinked;
 
     private void Start()
     {
@@ -28,8 +31,18 @@ public class LinkPoint : MonoBehaviour
 
     private void ShowAttachPoint()
     {
-        if(_linkable.IsLinked)
+        if(!_linkable.IsLinked && !_isLinked)
             _canvasGroup.alpha = 1;
+    }
+    
+    public void SetAsLinked()
+    {
+        _isLinked = true;
+    }
+    
+    public void SetAsReleased()
+    {
+        _isLinked = false;
     }
 
     public void Disable()
@@ -42,20 +55,15 @@ public class LinkPoint : MonoBehaviour
         _collider.enabled = true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public Transform GetAttachJoint() => Joint.transform;
+
+    public void DoNotHighLight()
     {
-        if(!other.CompareTag("GrabbingHand"))
-            return;
-        
-        Debug.Log("Show can grab");
-        highlight.color=Color.red;
+        highlight.color = Color.white;
     }
-    private void OnTriggerExit(Collider other)
+    
+    public void HighLight()
     {
-        if(!other.CompareTag("GrabbingHand"))
-            return;
-        
-        Debug.Log("Hide can grab");
-        highlight.color=Color.white;
+        highlight.color = Color.red;
     }
 }
