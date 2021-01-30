@@ -14,6 +14,11 @@ public class Linkable : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        var parent = GetComponentInParent<LinkPoint>();
+        if (parent != null)
+        {
+            LinkTo(parent);
+        }
     }
     
 

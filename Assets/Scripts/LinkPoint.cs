@@ -14,7 +14,7 @@ public class LinkPoint : MonoBehaviour
 
     private bool _isLinked;
 
-    private void Start()
+    private void Awake()
     {
         _collider = GetComponent<Collider>();
         _canvasGroup = GetComponentInChildren<CanvasGroup>();
