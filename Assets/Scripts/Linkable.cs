@@ -4,9 +4,10 @@ using UnityEngine;
 public class Linkable : MonoBehaviour
 {
     [SerializeField] private LinkPoint primaryLinkPoint;
-    private List<Linkable> _linkables=new List<Linkable>();
+    private List<Linkable> _linkables = new List<Linkable>();
     private Rigidbody _rigidbody;
 
+    public List<Linkable> Linkables => _linkables;
 
     private LinkPoint primaryLinkedWith;
 
@@ -70,5 +71,15 @@ public class Linkable : MonoBehaviour
         _rigidbody.isKinematic = false;
         transform.SetParent(null);
         
+    }
+
+    public string PrintName()
+    {
+        var ret = " " +gameObject.name;
+        foreach (var linkable in Linkables)
+        {
+            ret += "-"+linkable.PrintName();
+        }
+        return ret;
     }
 }
