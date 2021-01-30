@@ -6,14 +6,13 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Grabber : MonoBehaviour
 {
-
     [SerializeField] private LinkPointCollisionHandler _linkPointCollisionHandler;
-    
+
     private Grabbable GrabCandidate;
 
     private Grabbable Grabbed;
 
-    private LinkPoint LinkCandidate=>_linkPointCollisionHandler.LinkCandidate;
+    private LinkPoint LinkCandidate => _linkPointCollisionHandler.LinkCandidate;
 
     private Collider _collider;
 
@@ -25,20 +24,36 @@ public class Grabber : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Grabbable") && Grabbed==null)
+        if ((other.CompareTag("Grabbable") ||
+             (other.attachedRigidbody != null && other.attachedRigidbody.CompareTag("Grabbable"))) && Grabbed == null)
         {
+            var newGrabbable=other.attachedRigidbody.GetComponent<Grabbable>();
+            
+            if(newGrabbable==null)
+                return;
+
+            if (GrabCandidate != null && GrabCandidate != newGrabbable)
+            {
+                GrabCandidate.DoNotHighLight();
+                GrabCandidate = null;
+            }
+
+            GrabCandidate = newGrabbable;
+            GrabCandidate.HighLight();
             //Debug.Log("Collided with grabbable!");
-            GrabCandidate = other.attachedRigidbody.GetComponent<Grabbable>();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.CompareTag("Grabbable"))
-            return;
-
-        //Debug.Log("Removing!");
-        GrabCandidate = null;
+        if (other.CompareTag("Grabbable"))
+        {
+            if(GrabCandidate==null)
+                return;
+            //Debug.Log("Removing linkpoint!");
+            GrabCandidate.DoNotHighLight();
+            GrabCandidate = null;
+        }
     }
 
 
@@ -49,6 +64,7 @@ public class Grabber : MonoBehaviour
         {
             linkable.Unlink();
         }
+
         Grabbed = GrabCandidate;
         GrabCandidate = null;
         Grabbed.Grabbed();
@@ -61,20 +77,20 @@ public class Grabber : MonoBehaviour
 
     private void ReleaseAndLink()
     {
-        var linkable=Grabbed.GetComponent<Linkable>();
+        var linkable = Grabbed.GetComponent<Linkable>();
         if (linkable == null)
         {
             Debug.Log("Cannot find linkable!");
             ReleaseAndThrow();
             return;
         }
-        
+
         Grabbed.transform.SetParent(null);
         Grabbed.Released();
         Grabbed = null;
         EventManager.Instance.OnRelease.Invoke();
         _collider.enabled = true;
-        
+
         linkable.LinkTo(LinkCandidate);
         _linkPointCollisionHandler.Disable();
     }
@@ -101,12 +117,12 @@ public class Grabber : MonoBehaviour
         }
         else if (Grabbed != null && LinkCandidate != null)
         {
-            Debug.Log("Release And Link!");
+            //Debug.Log("Release And Link!");
             ReleaseAndLink();
         }
         else if (Grabbed != null)
         {
-            Debug.Log("Release And Throw!");
+            //Debug.Log("Release And Throw!");
             ReleaseAndThrow();
         }
     }

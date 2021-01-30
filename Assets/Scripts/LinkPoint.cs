@@ -10,7 +10,7 @@ public class LinkPoint : MonoBehaviour
     [SerializeField] private Image highlight;
     [SerializeField] private GameObject Joint;
 
-    private Linkable _linkable;
+    private Grabbable _grabbable;
 
     private bool _isLinked;
 
@@ -18,7 +18,7 @@ public class LinkPoint : MonoBehaviour
     {
         _collider = GetComponent<Collider>();
         _canvasGroup = GetComponentInChildren<CanvasGroup>();
-        _linkable = GetComponentInParent<Linkable>();
+        _grabbable = GetComponentInParent<Grabbable>();
         EventManager.Instance.OnGrab.AddListener(ShowAttachPoint);
         EventManager.Instance.OnRelease.AddListener(HideAttachPoint);
         HideAttachPoint();
@@ -31,8 +31,16 @@ public class LinkPoint : MonoBehaviour
 
     private void ShowAttachPoint()
     {
-        if(!_linkable.IsLinked && !_isLinked)
-            _canvasGroup.alpha = 1;
+        if (_grabbable == null)
+        {
+            if(!_isLinked)
+                _canvasGroup.alpha = 1;
+        }
+        else
+        {
+            if (!_isLinked && !_grabbable.grabbed)
+                _canvasGroup.alpha = 1;
+        }
     }
     
     public void SetAsLinked()

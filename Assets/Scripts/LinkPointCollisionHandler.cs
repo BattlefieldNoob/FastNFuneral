@@ -24,7 +24,7 @@ public class LinkPointCollisionHandler : MonoBehaviour
         
         if (other.CompareTag("LinkPoint"))
         {
-            Debug.Log("Collided with linkpoint!");
+            //Debug.Log("Collided with linkpoint!");
             var newLink=other.GetComponent<LinkPoint>();
             
             if(newLink==null)
@@ -50,7 +50,7 @@ public class LinkPointCollisionHandler : MonoBehaviour
         {
             if(LinkCandidate==null)
                 return;
-            Debug.Log("Removing linkpoint!");
+            //Debug.Log("Removing linkpoint!");
             LinkCandidate.DoNotHighLight();
             LinkCandidate = null;
         }

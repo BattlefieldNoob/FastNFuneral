@@ -9,6 +9,8 @@ public class Grabbable : MonoBehaviour
     private Outline _outline;
     private Rigidbody _rigidbody;
 
+    public bool grabbed = false;
+
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -20,32 +22,27 @@ public class Grabbable : MonoBehaviour
     {
         _rigidbody.isKinematic = true;
         _outline.enabled = false;
+        grabbed = true;
     }
 
     public void Released()
     {
         _rigidbody.isKinematic = false;
+        grabbed = false;
     }
 
     public void ApplyForce(Vector3 direction)
     {
-        _rigidbody.AddForce(direction*20,ForceMode.Impulse);
+        _rigidbody.AddForce(direction*10,ForceMode.Impulse);
     }
-    
 
-    private void OnTriggerEnter(Collider other)
+    public void DoNotHighLight()
     {
-        if(!other.CompareTag("Hand"))
-            return;
-
-        _outline.enabled = true;
-    }
-    
-    private void OnTriggerExit(Collider other)
-    {
-        if(!other.CompareTag("Hand"))
-            return;
-
         _outline.enabled = false;
+    }
+
+    public void HighLight()
+    {
+        _outline.enabled = true;
     }
 }
