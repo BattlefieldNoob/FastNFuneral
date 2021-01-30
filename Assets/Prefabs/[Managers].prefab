@@ -123,9 +123,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trueSentenceEvery: 4
   sentenceList: {fileID: 11400000, guid: ef954eb51dfabd441ac270d98944b9f2, type: 2}
-  targetLimbs:
-  - {fileID: 11400000, guid: 1f28211825834c34a89d8e0621a50fa0, type: 2}
-  - {fileID: 11400000, guid: 808f06a6349432742b9fac55a7335fd9, type: 2}
+  branchLimbs:
+  - {fileID: 11400000, guid: ac7b50ee1bdc5f24580362f3643a5f07, type: 2}
+  leafLimbs:
+  - {fileID: 11400000, guid: e4b8580eb86186f41ac142dc6967efde, type: 2}
+  - {fileID: 11400000, guid: a49aa7a0f69d3c7428d2f735f4f6cd6a, type: 2}
+  - {fileID: 11400000, guid: ca945ed43e455d44fbe6017887f71f16, type: 2}
+  - {fileID: 11400000, guid: ea9cf22fd19579b43ad7c5622e8529e2, type: 2}
+  - {fileID: 11400000, guid: c4359e99b1e16e94a940738786864702, type: 2}
+  - {fileID: 11400000, guid: eae7840875a79c04da35a5232c10dbd7, type: 2}
+  - {fileID: 11400000, guid: de4d7753ec1340443ad187f1f4fd8b84, type: 2}
+  - {fileID: 11400000, guid: 666713580a305b544aa8506dbf5132f6, type: 2}
+  - {fileID: 11400000, guid: f018c244507efe647914130c171e9f2a, type: 2}
+  bustLinks: 5
+  maxDepth: 2
+  maxLimbs: 5
 --- !u!1 &6857753557481230687
 GameObject:
   m_ObjectHideFlags: 0
