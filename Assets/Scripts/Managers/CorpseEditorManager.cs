@@ -18,6 +18,6 @@ public class CorpseEditorManager : Singleton<CorpseEditorManager>
 
     private void ExploreBody()
     {
-        Debug.Log(bust.PrintName());
+        Debug.Log("sdsdsds" + bust.PrintName());
     }
 }
