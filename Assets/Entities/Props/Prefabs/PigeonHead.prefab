@@ -159,6 +159,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PigeonHead
       objectReference: {fileID: 0}
+    - target: {fileID: 5425991223623518937, guid: 3755454c6207890459135a9b68a98fd4, type: 3}
+      propertyPath: limbInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: ac7b50ee1bdc5f24580362f3643a5f07, type: 2}
     - target: {fileID: 5425991223623518939, guid: 3755454c6207890459135a9b68a98fd4, type: 3}
       propertyPath: m_RootOrder
       value: 0
