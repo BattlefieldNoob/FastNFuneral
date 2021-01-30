@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Grabbable
   - Hand
+  - GrabbingHand
+  - LinkPoint
   layers:
   - Default
   - TransparentFX
