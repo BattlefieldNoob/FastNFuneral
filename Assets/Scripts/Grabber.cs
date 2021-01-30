@@ -64,9 +64,9 @@ public class Grabber : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Grabbable"))
+        if ((other.CompareTag("Grabbable") ||
+             (other.attachedRigidbody != null && other.attachedRigidbody.CompareTag("Grabbable"))))
         {
-            Debug.Log("REMOVING");
             if (GrabCandidate == null)
                 return;
             //Debug.Log("Removing linkpoint!");
