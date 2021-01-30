@@ -4,7 +4,7 @@ using UnityEngine;
 public class Linkable : MonoBehaviour
 {
     [SerializeField] private LinkPoint primaryLinkPoint;
-    private List<Linkable> _linkables;
+    private List<Linkable> _linkables=new List<Linkable>();
     private Rigidbody _rigidbody;
 
 
@@ -14,7 +14,6 @@ public class Linkable : MonoBehaviour
 
     private void Start()
     {
-        _linkables = new List<Linkable>();
         _rigidbody = GetComponent<Rigidbody>();
         var parent = GetComponentInParent<LinkPoint>();
         if (parent != null)
@@ -56,13 +55,20 @@ public class Linkable : MonoBehaviour
     {
         if (primaryLinkedWith == null)
             return;
+        
+        foreach (var linkable in _linkables)
+        {
+            linkable.Unlink();
+        }
 
-        primaryLinkedWith.GetComponentInParent<Linkable>().RemoveLinked(this);
+        _linkables.Clear();
+        //primaryLinkedWith.GetComponentInParent<Linkable>().RemoveLinked(this);
         primaryLinkPoint.Enable();
         primaryLinkedWith.Enable();
         primaryLinkedWith.SetAsReleased();
         primaryLinkedWith = null;
         _rigidbody.isKinematic = false;
-        transform.SetParent(null); 
+        transform.SetParent(null);
+        
     }
 }

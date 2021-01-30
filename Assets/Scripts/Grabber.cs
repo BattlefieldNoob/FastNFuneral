@@ -77,7 +77,7 @@ public class Grabber : MonoBehaviour
 
     private void ReleaseAndLink()
     {
-        Debug.Log("ReleaseAndLink");
+//        Debug.Log("ReleaseAndLink");
         var linkable = Grabbed.GetComponent<Linkable>();
         if (linkable == null)
         {

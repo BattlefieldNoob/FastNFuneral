@@ -25,6 +25,6 @@ public class GameCanvasManager : MonoBehaviour
         var flooredTime = Mathf.FloorToInt(time);
         var minutes = flooredTime / 60;
         var seconds = flooredTime - (minutes * 60);
-        return "" + minutes + ":" + seconds;
+        return $"{minutes:0}:{seconds:00}";
     }
 }
