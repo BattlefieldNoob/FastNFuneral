@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using FMODUnity;
 
 #pragma warning disable CS0649
 
@@ -32,7 +33,10 @@ namespace WraithavenGames.FirstSight
         [SerializeField] private AudioClip[] jumpingSounds;
 
         [Header("Dependencies")]
-        [SerializeField] private AudioSource audioSource;
+        [SerializeField] [EventRef] private string _stepSound;
+        [SerializeField] [EventRef] private string _landingSound;
+        [SerializeField] [EventRef] private string _jumpSound;
+
         [SerializeField] private PlayerController controller;
 
         private bool leftFootNext;
@@ -101,13 +105,11 @@ namespace WraithavenGames.FirstSight
             int randomIndex = Random.Range(0, footstepSounds.Length);
             AudioClip sound = footstepSounds[randomIndex];
 
-            audioSource.panStereo = onLeftFoot ? -steroBalance : steroBalance;
             onLeftFoot = !onLeftFoot;
 
             float volume = controller.IsRunning ? runningVolume : walkingVolume;
 
-            audioSource.pitch = Random.Range(minFootstepPitch, maxFootstepPitch);
-            audioSource.PlayOneShot(sound, volume);
+            RuntimeManager.PlayOneShotAttached(_stepSound, gameObject);
         }
 
         private void PlayLandingSound()
@@ -122,10 +124,9 @@ namespace WraithavenGames.FirstSight
                 return;
             AudioClip sound = landingSounds[randomIndex];
 
-            audioSource.panStereo = 0f;
+            //Aggiungere landing volume
+            RuntimeManager.PlayOneShotAttached(_stepSound, gameObject);
 
-            audioSource.pitch = Random.Range(minLandingPitch, maxLandingPitch);
-            audioSource.PlayOneShot(sound, landingVolume);
         }
 
         private void PlayJumpingSound()
@@ -138,10 +139,9 @@ namespace WraithavenGames.FirstSight
             int randomIndex = Random.Range(0, jumpingSounds.Length);
             AudioClip sound = jumpingSounds[randomIndex];
 
-            audioSource.panStereo = 0f;
+            //Aggiungere jump volume
+            RuntimeManager.PlayOneShotAttached(_jumpSound, gameObject);
 
-            audioSource.pitch = Random.Range(minJumpingPitch, maxJumpingPitch);
-            audioSource.PlayOneShot(sound, jumpingVolume);
         }
     }
 }

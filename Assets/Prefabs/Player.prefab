@@ -124,11 +124,8 @@ PrefabInstance:
       propertyPath: camY.sensitivity
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114483260231353832, guid: e6e1f325a3646a94182db0ac798354a9, type: 3}
-      propertyPath: landingSounds.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 81723836160691502, guid: e6e1f325a3646a94182db0ac798354a9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e6e1f325a3646a94182db0ac798354a9, type: 3}
 --- !u!4 &7877215562547497035 stripped
 Transform:
