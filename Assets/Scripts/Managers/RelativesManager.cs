@@ -1,48 +1,65 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Managers;
 using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RelativesManager : Singleton<RelativesManager>
 {
 
     [SerializeField] private GameObject[] RelativesSpawnPoints;
 
-    [SerializeField] private int RelativesPerGroup = 3;
+    [SerializeField] private int spawnPointsNumber = 4;
+
+    [SerializeField] private GameObject[] relatives;
     
+    [SerializeField] private int maxRelativesPerGroup = 3;
+
+    [SerializeField] private float distance = 1;
+
+    private int _minRelativesPerGroup = 2;
     void Start()
     {
+        if (maxRelativesPerGroup < _minRelativesPerGroup)
+            maxRelativesPerGroup = _minRelativesPerGroup;
         SpawnRelativesGroups();   
+        if(spawnPointsNumber>= RelativesSpawnPoints.Length)
+            Application.Quit();
     }
 
 
 
     private void SpawnRelativesGroups()
     {
-        foreach (var spawnPoint in RelativesSpawnPoints)
+        var randomSort = RelativesSpawnPoints.OrderBy(a => Guid.NewGuid()).ToList();
+        for (var i = 0; i < spawnPointsNumber; i++)
         {
-            
+            var spawnPoint = randomSort[i];
             SpawnRelativeGroup(spawnPoint.transform);
         }
     }
 
     private void SpawnRelativeGroup(Transform spawnCenter)
     {
-        for (int i = 0; i < RelativesPerGroup; i++)
+        spawnCenter.rotation=Quaternion.Euler(Vector3.Scale(Random.insideUnitSphere,new Vector3(0,360,0)));
+        var center = spawnCenter.position;
+        var relativesNumber = Random.Range(_minRelativesPerGroup, maxRelativesPerGroup + 1);
+        for (var i = 0; i < relativesNumber; i++)
         {
             var obj = CreateRelative();
             obj.transform.SetParent(spawnCenter);
-            obj.transform.localPosition = CalculateCirclePosition(i, RelativesPerGroup) + Vector3.up;
-            obj.transform.LookAt(Vector3.up);
+            obj.transform.localPosition = CalculateCirclePosition(i, relativesNumber);
+            obj.transform.LookAt(center);
         }
-        spawnCenter.rotation=Quaternion.Euler(Vector3.Scale(Random.insideUnitSphere,new Vector3(0,360,0)));
     }
 
     private GameObject CreateRelative()
     {
-        var obj=GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-        obj.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        var index = Random.Range(0, relatives.Length);
+        var obj = Instantiate(relatives[index]);
         return obj;
     }
 
@@ -50,6 +67,6 @@ public class RelativesManager : Singleton<RelativesManager>
     {
         var unit = 360 / total;
         var angle = unit * index;
-        return new Vector3(Mathf.Cos(angle*Mathf.Deg2Rad), 0, Mathf.Sin(angle*Mathf.Deg2Rad));
+        return new Vector3(distance * Mathf.Cos(angle*Mathf.Deg2Rad), 0, distance * Mathf.Sin(angle*Mathf.Deg2Rad));
     }
 }
