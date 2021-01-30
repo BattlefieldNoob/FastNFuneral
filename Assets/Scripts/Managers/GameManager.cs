@@ -9,8 +9,8 @@ using Random = UnityEngine.Random;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField]
-    [Range(2,10)]
-    private int lieFrequency = 4;
+    [Range(0,10)]
+    private int trueSentenceEvery = 4;
     [SerializeField]
     private SentenceListScriptableObject sentenceList;
     [SerializeField]
@@ -34,12 +34,12 @@ public class GameManager : Singleton<GameManager>
         
         var limb = targetLimbs[currentLimbIndex];
         currentLimbIndex++;
-        if (currentLimbIndex > targetLimbs.Count)
+        if (currentLimbIndex > targetLimbs.Count - 1)
         {
             ShuffleLimbs();
         }
         
-        bool lie = lieCounter < lieFrequency;
+        bool lie = lieCounter < trueSentenceEvery;
         lieCounter = lie ? lieCounter + 1 : 0;
         
         return string.Format(

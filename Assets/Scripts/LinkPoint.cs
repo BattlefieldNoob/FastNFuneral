@@ -12,6 +12,8 @@ public class LinkPoint : MonoBehaviour
 
     private Grabbable _grabbable;
 
+    private Linkable _linkable;
+
     private bool _isLinked;
 
     private void Awake()
@@ -19,6 +21,7 @@ public class LinkPoint : MonoBehaviour
         _collider = GetComponent<Collider>();
         _canvasGroup = GetComponentInChildren<CanvasGroup>();
         _grabbable = GetComponentInParent<Grabbable>();
+        _linkable = GetComponentInParent<Linkable>();
         EventManager.Instance.OnGrab.AddListener(ShowAttachPoint);
         EventManager.Instance.OnRelease.AddListener(HideAttachPoint);
         HideAttachPoint();
@@ -38,7 +41,7 @@ public class LinkPoint : MonoBehaviour
         }
         else
         {
-            if (!_isLinked && !_grabbable.grabbed)
+            if (!_isLinked && !_grabbable.grabbed && !_linkable.IsLinked)
                 _canvasGroup.alpha = 1;
         }
     }

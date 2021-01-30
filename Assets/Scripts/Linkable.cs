@@ -15,7 +15,6 @@ public class Linkable : MonoBehaviour
 
     private void Start()
     {
-        //_linkables = new List<Linkable>();
         _rigidbody = GetComponent<Rigidbody>();
         var parent = GetComponentInParent<LinkPoint>();
         if (parent != null)
@@ -57,14 +56,21 @@ public class Linkable : MonoBehaviour
     {
         if (primaryLinkedWith == null)
             return;
+        
+        foreach (var linkable in _linkables)
+        {
+            linkable.Unlink();
+        }
 
-        primaryLinkedWith.GetComponentInParent<Linkable>().RemoveLinked(this);
+        _linkables.Clear();
+        //primaryLinkedWith.GetComponentInParent<Linkable>().RemoveLinked(this);
         primaryLinkPoint.Enable();
         primaryLinkedWith.Enable();
         primaryLinkedWith.SetAsReleased();
         primaryLinkedWith = null;
         _rigidbody.isKinematic = false;
-        transform.SetParent(null); 
+        transform.SetParent(null);
+        
     }
 
     public void PrintName(int depth)
