@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4089519160433229037}
   - component: {fileID: 4661266130085677308}
   - component: {fileID: 6917538767344660510}
+  - component: {fileID: 4431198627206549202}
   m_Layer: 0
   m_Name: gloveDX
   m_TagString: Untagged
@@ -81,6 +82,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4431198627206549202
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912259785723790813}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1786865786315890441, guid: 981b1f37811ed6d48bb2445efe79fa23, type: 3}
 --- !u!1 &7021332603850989647
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,6 +203,7 @@ GameObject:
   - component: {fileID: 8243000547734395945}
   - component: {fileID: 5691165587228219461}
   - component: {fileID: 3892530033412011390}
+  - component: {fileID: 1366211277919501864}
   m_Layer: 0
   m_Name: muscleArmDX
   m_TagString: Untagged
@@ -259,6 +275,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1366211277919501864
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8365631048330449692}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -291670571408281157, guid: 981b1f37811ed6d48bb2445efe79fa23, type: 3}
 --- !u!1001 &8621649162503741262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -308,31 +338,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7958023378793644477, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.456
       objectReference: {fileID: 0}
     - target: {fileID: 7958023378793644477, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.628
       objectReference: {fileID: 0}
     - target: {fileID: 7958023378793644477, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 10.552341
       objectReference: {fileID: 0}
     - target: {fileID: 7958023378793644477, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7997191
       objectReference: {fileID: 0}
     - target: {fileID: 7958023378793644477, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7958023378793644477, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7958023378793644477, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.60037446
       objectReference: {fileID: 0}
     - target: {fileID: 7958023378793644477, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -344,7 +374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7958023378793644477, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -73.793
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}

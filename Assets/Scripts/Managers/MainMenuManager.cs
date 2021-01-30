@@ -24,7 +24,7 @@ namespace Managers
         {
             FadeCanvasGroup(menuCanvasGroup, true, 0);
             FadeCanvasGroup(howToCanvasGroup, false, 0);
-            newGameButton.onClick.AddListener(() => { SceneManager.LoadScene(sceneToLoad); });
+            newGameButton.onClick.AddListener(() => { ChangeSceneAndFadeManager.Instance.DoChangeScene(sceneToLoad); });
 
             howToButton.onClick.AddListener(() =>
             {
