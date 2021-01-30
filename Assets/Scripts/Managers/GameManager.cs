@@ -44,8 +44,8 @@ public class GameManager : Singleton<GameManager>
         
         return string.Format(
             randomSentence,
-            limb.RandomDescription(lie),
-            limb.RandomAdjective(lie)
+            $"<color=\"red\"><b>{limb.RandomDescription(lie)}</b></color>",
+            $"<color=\"yellow\"><b>{limb.RandomAdjective(lie)}</b></color>"
         );
     }
 
