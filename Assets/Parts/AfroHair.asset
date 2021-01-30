@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ffa5628fbfcdc9428eac9d65eea8130, type: 3}
   m_Name: AfroHair
   m_EditorClassIdentifier: 
-  adjective: 
   objectName: Afro Hair
-  hazyDescriptions: []
-  hazyAdjectives: []
+  hazyDescriptions:
+  - Big Bush
   linkNumber: 0

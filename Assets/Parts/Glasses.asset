@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ffa5628fbfcdc9428eac9d65eea8130, type: 3}
   m_Name: Glasses
   m_EditorClassIdentifier: 
-  adjective: 
   objectName: Glasses
-  hazyDescriptions: []
-  hazyAdjectives: []
+  hazyDescriptions:
+  - Sight of a donkey
   linkNumber: 0
