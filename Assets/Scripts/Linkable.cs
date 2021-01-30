@@ -76,7 +76,7 @@ public class Linkable : MonoBehaviour
 
     public string PrintMatchTree(int layer = 0)
     {
-        var matchTree = $"{layer}: <{gameObject.name}>";
+        var matchTree = $"{layer}: <_{gameObject.name}<";
         if (Linkables.Count < 1)
         {
             return matchTree + "[]";;

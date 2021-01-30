@@ -71,7 +71,7 @@ public class GameManager : Singleton<GameManager>
             branch.SetPositioning(limbIndex);
             targetLimbs.Add(branch);
             branchLimbs.Remove(branch);
-            var matchTree = $"{layer}: <{branch.GetName()}>";
+            var matchTree = $"{layer}: <_{branch.GetName()}<";
             matchTree = matchTree + "[";
             for (var i = 0; i < branch.GetLinkNumber(); i++)
             {
@@ -93,7 +93,7 @@ public class GameManager : Singleton<GameManager>
             leaf.SetPositioning(limbIndex);
             targetLimbs.Add(leaf);
             leafLimbs.Remove(leaf);
-            var matchTree = $"{layer}: <{leaf.GetName()}>";
+            var matchTree = $"{layer}: <_{leaf.GetName()}<";
             return new Tuple<string, int>(matchTree,currentLimbs);
         }
     }
@@ -125,5 +125,42 @@ public class GameManager : Singleton<GameManager>
     {
         currentLimbIndex = 0;
         targetLimbs = targetLimbs.OrderBy(a => new Guid()).ToList();
+    }
+    
+    public bool CorpsMatch()
+    {
+        return targetCorpse.Equals(CorpseEditorManager.Instance.MatchCorpString());
+    }
+    
+    public float LibsMatchCounter()
+    {
+        int counter = 0;
+        var parts = CorpsPartsArray();
+        foreach (var part in parts)
+        {
+            if (targetCorpse.Contains(part))
+            {
+                counter++;
+                Debug.Log("match"+part);
+            };
+        }
+
+        return counter;
+    }
+    
+    public string[] CorpsPartsArray()
+    {
+        return targetCorpse.Split('<').Where(s => s.Contains("_")).ToArray();
+    }
+    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Debug.Log(CorpsMatch());
+            Debug.Log(LibsMatchCounter());
+            Debug.Log("Current"+CorpseEditorManager.Instance.MatchCorpString());
+            Debug.Log("Target** "+targetCorpse);
+        }
     }
 }

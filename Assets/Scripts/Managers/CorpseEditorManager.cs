@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Managers;
 using UnityEngine;
 
@@ -10,14 +11,10 @@ public class CorpseEditorManager : Singleton<CorpseEditorManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            var corpsTarget = GameManager.Instance.TargetCorpse; 
-            Debug.Log(CorpsPartsArray());
-            Debug.Log($"CorpsMatch {CorpsMatch(corpsTarget)},LibsMatchCounter {LibsMatchCounter(corpsTarget)}");
-            // Start0: _Afro Hair0: _Beard0: _Conehead0: _Crab Claw0: _Pigeon Head[]
-            Debug.Log(MatchCorpString());
-        }
+        // if (Input.GetKeyDown(KeyCode.U))
+        // {
+        //     Debug.Log(MatchCorpString());
+        // }
     }
 
     public Linkable GetBust()
@@ -33,30 +30,7 @@ public class CorpseEditorManager : Singleton<CorpseEditorManager>
         {
             matchString = matchString + limb.PrintMatchTree() + ',';
         }
-        // Start0: _Afro Hair0: _Beard0: _Conehead0: _Crab Claw0: _Pigeon Head[]
+        // 0: <_Afro Hair>,0: <_Pigeon Head>[],0: <_Beard>,
         return matchString;
     }
-    
-    public bool CorpsMatch(string corpsTargetString)
-    {
-        return corpsTargetString.Equals(MatchCorpString());
-    }
-    
-    public float LibsMatchCounter(string corpsTargetString)
-    {
-        int counter = 0;
-        var parts = CorpsPartsArray();
-        foreach (var part in parts)
-        {
-            if (corpsTargetString.Contains(part)) counter++;
-        }
-
-        return counter / parts.Length;
-    }
-    
-    public string[] CorpsPartsArray()
-    {
-        return MatchCorpString().Split();
-    }
-
 }
