@@ -13,12 +13,21 @@ public class GameManager : Singleton<GameManager>
     private int trueSentenceEvery = 4;
     [SerializeField]
     private SentenceListScriptableObject sentenceList;
-    [SerializeField]
+    [SerializeField] private List<LimbScriptableObject> branchLimbs;
+    [SerializeField] private List<LimbScriptableObject> leafLimbs;
+    [SerializeField] private int maxDepth = 2;
+    [SerializeField] private int maxLimbs = 10;
+    private string targetCorpse;
     private List<LimbScriptableObject> targetLimbs;
     private int currentLimbIndex = 0;
     private int lieCounter = 0;
+
+    public string TargetCorpse => targetCorpse;
+
     private void Start()
     {
+        maxLimbs = Mathf.Clamp(maxLimbs, 1, branchLimbs.Count + leafLimbs.Count - 1);
+        GenerateTargetCorpse();
         ShuffleLimbs();
         CountdownManager.Instance.StartCountdown();
         EventManager.Instance.OnCountdownEnd.AddListener(remaining =>
@@ -26,6 +35,16 @@ public class GameManager : Singleton<GameManager>
             // Do Final Cutscene
             Debug.Log("[GameManager] Restart Game");
         });
+    }
+
+    public void GenerateTargetCorpse()
+    {
+        var branches = branchLimbs.OrderBy(a => new Guid()).ToList();
+        var leaves = leafLimbs.OrderBy(a => new Guid()).ToList();
+        foreach (var linkable in CorpseEditorManager.Instance.GetBust().Linkables)
+        {
+            //
+        }
     }
 
     public string RandomSentence()
