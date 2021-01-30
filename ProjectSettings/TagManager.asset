@@ -8,6 +8,7 @@ TagManager:
   - Hand
   - GrabbingHand
   - LinkPoint
+  - InteractableShelf
   layers:
   - Default
   - TransparentFX

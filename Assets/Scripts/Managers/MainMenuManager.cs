@@ -39,6 +39,9 @@ namespace Managers
             });
 
             exitButton.onClick.AddListener(Application.Quit);
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
 
         private void FadeCanvasGroup(CanvasGroup cg, bool fadeIn, float time)

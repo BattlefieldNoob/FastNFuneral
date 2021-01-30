@@ -57,7 +57,7 @@ MonoBehaviour:
   - {fileID: 3981407436891156201, guid: 4ba8941aaa7660b4ab8d0947dce6a7d4, type: 3}
   - {fileID: 8665011620632416741, guid: 5c208bcd5ef17534bbd70f0c0d9e45f0, type: 3}
   maxRelativesPerGroup: 3
-  distance: 0.68
+  distance: 0.5
 --- !u!1 &1639250572837484516
 GameObject:
   m_ObjectHideFlags: 0
