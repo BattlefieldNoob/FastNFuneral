@@ -16,6 +16,11 @@ public class CorpseEditorManager : Singleton<CorpseEditorManager>
         }
     }
 
+    public Linkable GetBust()
+    {
+        return bust;
+    }
+
     private void ExploreBody()
     {    
         Debug.Log(bust.PrintMatchTree());

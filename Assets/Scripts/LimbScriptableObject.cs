@@ -19,10 +19,21 @@ public class LimbScriptableObject : ScriptableObject
     [SerializeField] private string objectName;
     [SerializeField] private string[] hazyDescriptions;
     [SerializeField] private string[] hazyAdjectives;
+    [SerializeField] private int linkNumber;
+
+    public string GetName()
+    {
+        return objectName;
+    }
+
+    public int GetLinkNumber()
+    {
+        return linkNumber;
+    }
 
     public string RandomDescription(bool hazy = true)
     {
-        if (hazy)
+        if (hazy && hazyDescriptions.Length > 0)
         {
             return hazyDescriptions[Random.Range(0, hazyDescriptions.Length - 1)];
         }
@@ -32,7 +43,7 @@ public class LimbScriptableObject : ScriptableObject
 
     public string RandomAdjective(bool hazy = true)
     {
-        if (hazy)
+        if (hazy && hazyAdjectives.Length > 0)
         {
             return hazyAdjectives[Random.Range(0, hazyAdjectives.Length - 1)];
         }
