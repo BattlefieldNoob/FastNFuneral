@@ -1091,11 +1091,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c53c6e439b8e1934cad6463c20f72555, type: 3}
---- !u!1 &783422265 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1639250571671159574, guid: 889296dd6d90bd24d831d6329c9f784f, type: 3}
-  m_PrefabInstance: {fileID: 1639250572138547843}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &947153637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1410,11 +1405,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db7802e98203f6d40960156e4c641a41, type: 3}
---- !u!1 &1921831301 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1639250572550350985, guid: 889296dd6d90bd24d831d6329c9f784f, type: 3}
-  m_PrefabInstance: {fileID: 1639250572138547843}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1961735486
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1554,14 +1544,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1639250571127887754, guid: 889296dd6d90bd24d831d6329c9f784f, type: 3}
-      propertyPath: RelativesSpawnPoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 1921831301}
-    - target: {fileID: 1639250571127887754, guid: 889296dd6d90bd24d831d6329c9f784f, type: 3}
-      propertyPath: RelativesSpawnPoints.Array.data[3]
-      value: 
-      objectReference: {fileID: 783422265}
     - target: {fileID: 1639250571127887755, guid: 889296dd6d90bd24d831d6329c9f784f, type: 3}
       propertyPath: m_Name
       value: '[RelativesManager]'
