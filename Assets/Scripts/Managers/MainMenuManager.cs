@@ -22,35 +22,30 @@ namespace Managers
 
         private void Start()
         {
-            
-            FadeCanvasGroup(menuCanvasGroup,true);
-            FadeCanvasGroup(howToCanvasGroup,false);
-            newGameButton.onClick.AddListener(() =>
-            {
-                SceneManager.LoadScene(sceneToLoad);
-            });
-            
+            FadeCanvasGroup(menuCanvasGroup, true, 0);
+            FadeCanvasGroup(howToCanvasGroup, false, 0);
+            newGameButton.onClick.AddListener(() => { SceneManager.LoadScene(sceneToLoad); });
+
             howToButton.onClick.AddListener(() =>
             {
-                FadeCanvasGroup(menuCanvasGroup,false);
-                FadeCanvasGroup(howToCanvasGroup,true);
+                FadeCanvasGroup(menuCanvasGroup, false, fadeTime);
+                FadeCanvasGroup(howToCanvasGroup, true, fadeTime);
             });
 
             backToMenuButton.onClick.AddListener(() =>
             {
-                FadeCanvasGroup(menuCanvasGroup,true);
-                FadeCanvasGroup(howToCanvasGroup,false);
-
+                FadeCanvasGroup(menuCanvasGroup, true, fadeTime);
+                FadeCanvasGroup(howToCanvasGroup, false, fadeTime);
             });
-            
+
             exitButton.onClick.AddListener(Application.Quit);
         }
 
-        private void FadeCanvasGroup(CanvasGroup cg, bool fadeIn)
+        private void FadeCanvasGroup(CanvasGroup cg, bool fadeIn, float time)
         {
             cg.interactable = fadeIn;
             cg.blocksRaycasts = fadeIn;
-            cg.DOFade(fadeIn ? 1 : 0, fadeTime);
+            cg.DOFade(fadeIn ? 1 : 0, time);
         }
     }
 }
