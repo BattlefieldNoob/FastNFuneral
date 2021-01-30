@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SentenceList
   m_EditorClassIdentifier: 
   sentences:
-  - 'I Remember  he was so proud about his {1} {0} '
-  - '{1} {0} was his thing'
-  - That {0} we will alwasys remeber me about him
+  - 'I Remember  he was so proud about his {0} {1} '
+  - '{0} was his thing'
+  - That {0} {1} will alwasys remeber me about him

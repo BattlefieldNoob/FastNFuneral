@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7958023378793644465, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
       propertyPath: m_Name
-      value: CrabClaw Variant
+      value: CrabClaw
       objectReference: {fileID: 0}
     - target: {fileID: 7958023378793644477, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
       propertyPath: m_RootOrder
@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7958023378793644479, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
+      propertyPath: limbInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: ea9cf22fd19579b43ad7c5622e8529e2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e33c24de74d70344a5f71eed87735e3, type: 3}
 --- !u!4 &5944322070142671292 stripped
