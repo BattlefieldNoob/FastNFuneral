@@ -216,6 +216,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &783422265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1639250571671159574, guid: 889296dd6d90bd24d831d6329c9f784f, type: 3}
+  m_PrefabInstance: {fileID: 1639250572138547843}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1118388382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -349,6 +354,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6317805809608689028, guid: a11c5be10a5f13c47a011192c0674d58, type: 3}
+--- !u!1 &1921831301 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1639250572550350985, guid: 889296dd6d90bd24d831d6329c9f784f, type: 3}
+  m_PrefabInstance: {fileID: 1639250572138547843}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1639250572138547843
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -400,6 +410,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1639250571127887754, guid: 889296dd6d90bd24d831d6329c9f784f, type: 3}
+      propertyPath: RelativesSpawnPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1921831301}
+    - target: {fileID: 1639250571127887754, guid: 889296dd6d90bd24d831d6329c9f784f, type: 3}
+      propertyPath: RelativesSpawnPoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 783422265}
     - target: {fileID: 1639250571127887755, guid: 889296dd6d90bd24d831d6329c9f784f, type: 3}
       propertyPath: m_Name
       value: '[RelativesManager]'
