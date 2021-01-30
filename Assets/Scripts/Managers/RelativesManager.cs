@@ -14,7 +14,7 @@ public class RelativesManager : Singleton<RelativesManager>
 
     [SerializeField] private int spawnPointsNumber = 4;
 
-    [SerializeField] private GameObject relativeBase;
+    [SerializeField] private GameObject[] relatives;
     
     [SerializeField] private int maxRelativesPerGroup = 3;
 
@@ -58,7 +58,8 @@ public class RelativesManager : Singleton<RelativesManager>
 
     private GameObject CreateRelative()
     {
-        var obj = Instantiate(relativeBase);
+        var index = Random.Range(0, relatives.Length);
+        var obj = Instantiate(relatives[index]);
         return obj;
     }
 

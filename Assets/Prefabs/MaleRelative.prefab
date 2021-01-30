@@ -259,7 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8891077723403030221}
   m_Layer: 0
-  m_Name: RelativeBase
+  m_Name: MaleRelative
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
