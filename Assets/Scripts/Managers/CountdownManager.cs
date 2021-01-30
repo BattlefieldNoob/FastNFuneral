@@ -1,10 +1,11 @@
 using Managers;
+using TMPro;
 using UnityEngine;
 
 public class CountdownManager : Singleton<CountdownManager>
 {
     [SerializeField] private float countdownSeconds = 60;
-
+    
     private bool running;
     private float actual;
 
@@ -43,4 +44,5 @@ public class CountdownManager : Singleton<CountdownManager>
         }
 
     }
+
 }
