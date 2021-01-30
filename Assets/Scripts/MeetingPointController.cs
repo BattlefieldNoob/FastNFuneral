@@ -37,8 +37,7 @@ public class MeetingPointController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        var phrase = "uga buga";
-        //GENERATE PHRASE
+        var phrase = GameManager.Instance.RandomSentence();
         _infoText.text = phrase;
         FadeCanvasGroup(_infoCanvasGroup, true, fadeInTime);
     }
