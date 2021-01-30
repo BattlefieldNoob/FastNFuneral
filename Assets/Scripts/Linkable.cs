@@ -73,12 +73,13 @@ public class Linkable : MonoBehaviour
         
     }
 
-    public void PrintName(int depth)
+    public string PrintName()
     {
-        Debug.Log("Depth "+ depth + " " + gameObject.name);
+        var ret = " " +gameObject.name;
         foreach (var linkable in Linkables)
         {
-            linkable.PrintName(depth+1);
+            ret += "-"+linkable.PrintName();
         }
+        return ret;
     }
 }

@@ -18,10 +18,6 @@ public class CorpseEditorManager : Singleton<CorpseEditorManager>
 
     private void ExploreBody()
     {
-        var depth = 0;
-        foreach (var linkable in bust.Linkables)
-        {
-            linkable.PrintName(depth+1);
-        }
+        Debug.Log(bust.PrintName());
     }
 }
