@@ -15,6 +15,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private int bustLinks = 5;
     [SerializeField] private int maxDepth = 2;
     [SerializeField] private int maxLimbs = 10;
+    private readonly List<string> orderedPositioning = new List<string>{"on the head","on the right arm","on the left arm","on the left leg","on the right leg"};
+
+    public List<string> OrderedPositioning => orderedPositioning;
+
     private string targetCorpse;
     private List<LimbScriptableObject> targetLimbs = new List<LimbScriptableObject>();
     private int currentLimbIndex = 0;
@@ -46,14 +50,14 @@ public class GameManager : Singleton<GameManager>
         var list = CorpseEditorManager.Instance.GetBust().Linkables;
         for (var index = 0; index < bustLinks; index++)
         {
-            start += GenerateRecursive(currentLimbs).Item1;
+            start += GenerateRecursive(currentLimbs, index).Item1;
         }
 
         targetCorpse = start;
         ShuffleLimbs();
     }
 
-    private Tuple<string,int> GenerateRecursive(int currentLimbs, int layer = 0)
+    private Tuple<string,int> GenerateRecursive(int currentLimbs, int limbIndex, int layer = 0)
     {
         if (layer>= maxDepth) return new Tuple<string, int>("",currentLimbs);
         currentLimbs++;
@@ -64,6 +68,7 @@ public class GameManager : Singleton<GameManager>
                 return new Tuple<string, int>("",currentLimbs);
             }
             var branch = branchLimbs.FirstOrDefault();
+            branch.SetPositioning(limbIndex);
             targetLimbs.Add(branch);
             branchLimbs.Remove(branch);
             var matchTree = $"{layer}: _" + branch.GetName();
@@ -85,6 +90,7 @@ public class GameManager : Singleton<GameManager>
                 return new Tuple<string, int>("",currentLimbs);
             }
             var leaf = leafLimbs.FirstOrDefault();
+            leaf.SetPositioning(limbIndex);
             targetLimbs.Add(leaf);
             leafLimbs.Remove(leaf);
             var matchTree = $"{layer}: _" + leaf.GetName();
@@ -109,7 +115,9 @@ public class GameManager : Singleton<GameManager>
         return string.Format(
             randomSentence,
             $"<color=\"red\"><b>{limb.RandomDescription(lie)}</b></color>",
-            $"<color=\"yellow\"><b>{limb.RandomAdjective(lie)}</b></color>"
+            $"<color=\"yellow\"><b>{limb.GetPositioning()}</b></color>"
+            /*,
+            $"<color=\"yellow\"><b>{limb.RandomAdjective(lie)}</b></color>"*/
         );
     }
 

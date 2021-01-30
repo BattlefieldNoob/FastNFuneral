@@ -5,21 +5,14 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(fileName = "Limb", menuName = "ScriptableObjects/LimbScriptableObject", order = 1)]
 public class LimbScriptableObject : ScriptableObject
 {
-    /*enum LimbType
-    {
-        Head,
-        RightLeg,
-        LeftLeg,
-        RightArm,
-        LeftArm
-    }
-    [SerializeField]
-    private LimbType limbType;*/
-    [SerializeField] private string adjective;
+    //[SerializeField] private string adjective;
     [SerializeField] private string objectName;
+
     [SerializeField] private string[] hazyDescriptions;
-    [SerializeField] private string[] hazyAdjectives;
+
+    //[SerializeField] private string[] hazyAdjectives;
     [SerializeField] private int linkNumber;
+    private string _positioning = "";
 
     public string GetName()
     {
@@ -41,7 +34,17 @@ public class LimbScriptableObject : ScriptableObject
         return objectName;
     }
 
-    public string RandomAdjective(bool hazy = true)
+    public void SetPositioning(int index)
+    {
+        _positioning = GameManager.Instance.OrderedPositioning.Count < index ? "" : GameManager.Instance.OrderedPositioning[index];
+    }
+
+    public string GetPositioning()
+    {
+        return _positioning;
+    }
+
+    /*public string RandomAdjective(bool hazy = true)
     {
         if (hazy && hazyAdjectives.Length > 0)
         {
@@ -49,5 +52,5 @@ public class LimbScriptableObject : ScriptableObject
         }
 
         return adjective;
-    }
+    }*/
 }
