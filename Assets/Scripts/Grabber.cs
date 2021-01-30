@@ -8,6 +8,8 @@ public class Grabber : MonoBehaviour
 {
     [SerializeField] private LinkPointCollisionHandler _linkPointCollisionHandler;
 
+    [SerializeField] private Vector3 _handDeltaPosition;
+
     private Grabbable GrabCandidate;
 
     private InteractableShelf InteractableShelfSelected;
@@ -98,7 +100,8 @@ public class Grabber : MonoBehaviour
         GrabCandidate = null;
         Grabbed.Grabbed();
         Grabbed.transform.SetParent(transform);
-        Grabbed.transform.localPosition = Vector3.zero;
+        Grabbed.transform.localRotation = Quaternion.identity;
+        Grabbed.transform.localPosition = Vector3.zero + _handDeltaPosition;
         EventManager.Instance.OnGrab.Invoke();
         _collider.enabled = false;
         _linkPointCollisionHandler.Enable();

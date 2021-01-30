@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Managers;
 using UnityEngine;
 
@@ -10,10 +11,10 @@ public class CorpseEditorManager : Singleton<CorpseEditorManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            ExploreBody();
-        }
+        // if (Input.GetKeyDown(KeyCode.U))
+        // {
+        //     Debug.Log(MatchCorpString());
+        // }
     }
 
     public Linkable GetBust()
@@ -21,8 +22,15 @@ public class CorpseEditorManager : Singleton<CorpseEditorManager>
         return bust;
     }
 
-    private void ExploreBody()
-    {    
-        Debug.Log(bust.PrintMatchTree());
+    public string MatchCorpString()
+    {
+
+        var matchString = "";
+        foreach (var limb in bust.Linkables)
+        {
+            matchString = matchString + limb.PrintMatchTree() + ',';
+        }
+        // 0: <_Afro Hair>,0: <_Pigeon Head>[],0: <_Beard>,
+        return matchString;
     }
 }
