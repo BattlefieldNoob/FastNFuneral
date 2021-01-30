@@ -4,6 +4,7 @@ using UnityEngine;
 public class Linkable : MonoBehaviour
 {
     [SerializeField] private LinkPoint primaryLinkPoint;
+    [SerializeField] private LimbScriptableObject limbInfo;
     private List<Linkable> _linkables = new List<Linkable>();
     private Rigidbody _rigidbody;
 
