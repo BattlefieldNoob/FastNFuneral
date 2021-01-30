@@ -36,6 +36,10 @@ public class CountdownManager : Singleton<CountdownManager>
         if(!running)
             return;
 
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.K))
+            actual = 0;
+#endif
         actual -= Time.deltaTime;
 
         if (actual <= 0)
