@@ -57,8 +57,6 @@ public class GameManager : Singleton<GameManager>
         maxLimbs = Mathf.Clamp(maxLimbs, 1, branchLimbs.Count + leafLimbs.Count - 1);
         Shuffle(branchLimbs);
         Shuffle(leafLimbs);
-        // branchLimbs = branchLimbs.OrderBy(a => new Guid()).ToList();
-        // leafLimbs = leafLimbs.OrderBy(a => new Guid()).ToList();
         GenerateTargetCorpse();
         Debug.Log("TARGET: " + targetCorpse);
         //ShuffleLimbs();
@@ -157,7 +155,7 @@ public class GameManager : Singleton<GameManager>
     private void ShuffleLimbs()
     {
         currentLimbIndex = 0;
-        targetLimbs = targetLimbs.OrderBy(a => new Guid()).ToList();
+        Shuffle(targetLimbs);
     }
     
     public string CorpsMatchSubTree(string currentCorpsTree)
