@@ -7,10 +7,14 @@ public class LinkPointCollisionHandler : MonoBehaviour
     public Collider _Collider;
 
     private bool isEnabled = false;
+    
+    private Transform cameraTransform;
+
 
     private void Start()
     {
         _Collider = GetComponent<Collider>();
+        cameraTransform = Camera.main.transform;
     }
 
     public void Enable()
@@ -42,6 +46,16 @@ public class LinkPointCollisionHandler : MonoBehaviour
 
             if (LinkCandidate != null && LinkCandidate != newLink)
             {
+                var cameraPosition = cameraTransform.position;
+                var actualCandidateDistance = Vector3.Distance(cameraPosition, LinkCandidate.transform.position);
+
+                var newCandidateDistance = Vector3.Distance(cameraPosition, newLink.transform.position);
+
+                if (actualCandidateDistance < newCandidateDistance)
+                    //dont change the actual candidate!
+                    return;
+                
+                
                 LinkCandidate.DoNotHighLight();
                 LinkCandidate = null;
             }
