@@ -27,7 +27,7 @@ public class EndingManager : MonoBehaviour
         backToMenuButton.enabled = false;
         screenshotButton.interactable = false;
         var folderPath = Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
-        var completePath = Path.Combine(folderPath, $"Fast_n_Funeral_{DateTime.Now.ToLongTimeString().Replace(":","_")}.png");
+        var completePath = Path.Combine(folderPath, $"Fast_&_Funeral_{DateTime.Now.ToLongTimeString().Replace(":","_")}.png");
         Debug.Log(completePath);
         ScreenCapture.CaptureScreenshot(completePath);
         screenshotButtonPanel.alpha = 1;
