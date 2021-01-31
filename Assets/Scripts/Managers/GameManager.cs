@@ -78,7 +78,7 @@ public class GameManager : Singleton<GameManager>
                 if(currentLimbs>=maxLimbs || Random.Range(0, 2) == 0) continue;
                 var ret = GenerateRecursive(currentLimbs, layer+1);
                 currentLimbs = ret.Item2;
-                matchTree = matchTree + ret.Item1 + ",";
+                matchTree = matchTree + ret.Item1 + (ret.Item1 != "" ? "," : "");
             }
             matchTree = matchTree + "]";
             return new Tuple<string, int>(matchTree,currentLimbs);
