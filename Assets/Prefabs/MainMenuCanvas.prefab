@@ -240,7 +240,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 521.8}
+  m_SizeDelta: {x: 0, y: 523.3}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5055677741711387545
 CanvasRenderer:
@@ -270,7 +270,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Build the corpse!
+  m_text: The Funeral is in minutes and <b>you've lost the body!</b> Eavesdrop his
+    relatives for clues and <b>rush in the morgue to fix the corpse!</b>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 40242c45387955d4b8c2b59e2952c049, type: 2}
   m_sharedMaterial: {fileID: 8305494363384969665, guid: 40242c45387955d4b8c2b59e2952c049, type: 2}
@@ -303,7 +304,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -783,7 +784,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 700, y: 700}
+  m_SizeDelta: {x: 996.9, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5055677742190126272
 CanvasRenderer:
