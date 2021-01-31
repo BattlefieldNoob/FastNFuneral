@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Linkable : MonoBehaviour
 {
-    [SerializeField] private LinkPoint primaryLinkPoint;
+    [SerializeField] public LinkPoint primaryLinkPoint;
     [SerializeField] private LimbScriptableObject limbInfo;
     private List<Linkable> _linkables = new List<Linkable>();
     private Rigidbody _rigidbody;
@@ -44,6 +44,7 @@ public class Linkable : MonoBehaviour
 
         primaryLinkedWith = linkToObject;
         primaryLinkedWith.SetAsLinked();
+        primaryLinkPoint.SetAsLinked();
         transform.SetParent(primaryLinkedWith.GetAttachJoint());
         transform.localRotation = primaryLinkPoint.GetAttachJoint().localRotation;
         transform.localPosition = Vector3.zero;
@@ -68,6 +69,7 @@ public class Linkable : MonoBehaviour
         primaryLinkPoint.Enable();
         primaryLinkedWith.Enable();
         primaryLinkedWith.SetAsReleased();
+        primaryLinkPoint.SetAsReleased();
         primaryLinkedWith = null;
         _rigidbody.isKinematic = false;
         transform.SetParent(null);
