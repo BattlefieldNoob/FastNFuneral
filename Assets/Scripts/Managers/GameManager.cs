@@ -15,7 +15,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private int bustLinks = 5;
     [SerializeField] private int maxDepth = 2;
     [SerializeField] private int maxLimbs = 10;
-    private readonly List<string> orderedPositioning = new List<string>{"on the head","on the right arm","on the left arm","on the left leg","on the right leg"};
+
+    private readonly List<string> orderedPositioning = new List<string>
+        {"on the head", "on the right arm", "on the left arm", "on the left leg", "on the right leg"};
 
     public List<string> OrderedPositioning => orderedPositioning;
 
@@ -23,22 +25,40 @@ public class GameManager : Singleton<GameManager>
     private List<LimbScriptableObject> targetLimbs = new List<LimbScriptableObject>();
     private int currentLimbIndex = 0;
     private int lieCounter = 0;
+    private CorpseEditorManager corpseManager;
 
     public string TargetCorpse => targetCorpse;
 
     private void Start()
     {
-        maxLimbs = Mathf.Clamp(maxLimbs, 1, branchLimbs.Count + leafLimbs.Count - 1);
-        GenerateTargetCorpse();
-        Debug.Log("TARGET: "+targetCorpse);
-        //ShuffleLimbs();
-        CountdownManager.Instance.StartCountdown();
         EventManager.Instance.OnCountdownEnd.AddListener(remaining =>
         {
             // Do Final Cutscene
             Debug.Log("[GameManager] Restart Game");
         });
+        if (SceneManager.GetActiveScene().name == "Main")
+        {
+            SetupGame();
+        }
+        SceneManager.sceneLoaded += (scene, mode) =>
+        {
+            if (scene.name != "Main")
+            {
+                return;
+            }
+            SetupGame();
+        };
         
+    }
+
+    private void SetupGame()
+    {
+        corpseManager = FindObjectOfType<CorpseEditorManager>();
+        maxLimbs = Mathf.Clamp(maxLimbs, 1, branchLimbs.Count + leafLimbs.Count - 1);
+        GenerateTargetCorpse();
+        Debug.Log("TARGET: " + targetCorpse);
+        //ShuffleLimbs();
+        CountdownManager.Instance.StartCountdown();
         branchLimbs = branchLimbs.OrderBy(a => new Guid()).ToList();
         leafLimbs = leafLimbs.OrderBy(a => new Guid()).ToList();
     }
@@ -57,16 +77,17 @@ public class GameManager : Singleton<GameManager>
         ShuffleLimbs();
     }
 
-    private Tuple<string,int> GenerateRecursive(int currentLimbs, int limbIndex, int layer = 0)
+    private Tuple<string, int> GenerateRecursive(int currentLimbs, int limbIndex, int layer = 0)
     {
-        if (layer>= maxDepth) return new Tuple<string, int>("",currentLimbs);
+        if (layer >= maxDepth) return new Tuple<string, int>("", currentLimbs);
         currentLimbs++;
         if (Random.Range(0, 2) == 0)
         {
             if (branchLimbs.Count <= 0)
             {
-                return new Tuple<string, int>("",currentLimbs);
+                return new Tuple<string, int>("", currentLimbs);
             }
+
             var branch = branchLimbs.FirstOrDefault();
             branch.SetPositioning(limbIndex);
             targetLimbs.Add(branch);
@@ -75,26 +96,28 @@ public class GameManager : Singleton<GameManager>
             matchTree = matchTree + "[";
             for (var i = 0; i < branch.GetLinkNumber(); i++)
             {
-                if(currentLimbs>=maxLimbs || Random.Range(0, 2) == 0) continue;
-                var ret = GenerateRecursive(currentLimbs, layer+1);
+                if (currentLimbs >= maxLimbs || Random.Range(0, 2) == 0) continue;
+                var ret = GenerateRecursive(currentLimbs, layer + 1);
                 currentLimbs = ret.Item2;
                 matchTree = matchTree + ret.Item1 + (ret.Item1 != "" ? "," : "");
             }
+
             matchTree = matchTree + "]";
-            return new Tuple<string, int>(matchTree,currentLimbs);
+            return new Tuple<string, int>(matchTree, currentLimbs);
         }
         else
         {
             if (leafLimbs.Count <= 0)
             {
-                return new Tuple<string, int>("",currentLimbs);
+                return new Tuple<string, int>("", currentLimbs);
             }
+
             var leaf = leafLimbs.FirstOrDefault();
             leaf.SetPositioning(limbIndex);
             targetLimbs.Add(leaf);
             leafLimbs.Remove(leaf);
             var matchTree = $"{layer}: <_{leaf.GetName()}<";
-            return new Tuple<string, int>(matchTree,currentLimbs);
+            return new Tuple<string, int>(matchTree, currentLimbs);
         }
     }
 
@@ -126,12 +149,12 @@ public class GameManager : Singleton<GameManager>
         currentLimbIndex = 0;
         targetLimbs = targetLimbs.OrderBy(a => new Guid()).ToList();
     }
-    
+
     public bool CorpsMatch()
     {
-        return targetCorpse.Equals(CorpseEditorManager.Instance.MatchCorpString());
+        return targetCorpse.Equals(corpseManager.MatchCorpString());
     }
-    
+
     public float LibsMatchCounter()
     {
         int counter = 0;
@@ -141,26 +164,28 @@ public class GameManager : Singleton<GameManager>
             if (targetCorpse.Contains(part))
             {
                 counter++;
-                Debug.Log("match"+part);
-            };
+                Debug.Log("match" + part);
+            }
+
+            ;
         }
 
         return counter;
     }
-    
+
     public string[] CorpsPartsArray()
     {
         return targetCorpse.Split('<').Where(s => s.Contains("_")).ToArray();
     }
-    
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.U))
         {
             Debug.Log(CorpsMatch());
             Debug.Log(LibsMatchCounter());
-            Debug.Log("Current"+CorpseEditorManager.Instance.MatchCorpString());
-            Debug.Log("Target** "+targetCorpse);
+            Debug.Log("Current" + corpseManager.MatchCorpString());
+            Debug.Log("Target** " + targetCorpse);
         }
     }
 }
