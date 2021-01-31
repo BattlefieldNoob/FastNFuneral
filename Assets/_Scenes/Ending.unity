@@ -1058,8 +1058,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638147962}
   m_LocalRotation: {x: -0.49227953, y: -0.5076031, z: -0.50760293, w: 0.4922796}
-  m_LocalPosition: {x: -5.226, y: 0.994, z: -1.832}
-  m_LocalScale: {x: 0.8147, y: 1, z: 1}
+  m_LocalPosition: {x: -5.226, y: 0.837, z: -1.832}
+  m_LocalScale: {x: 0.8147, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1933,6 +1933,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4599858888105791497, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599858888828100313, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 5.5340118e-11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599858888828100313, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 3.0266152e+24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599858888828100313, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 1.90508e+31
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599858888828100313, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1.2926333e+22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599858888862290094, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1e-45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599858888862290094, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599858888862290094, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599858888862290094, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
