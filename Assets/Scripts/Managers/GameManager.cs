@@ -15,8 +15,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private int bustLinks = 5;
     [SerializeField] private int maxDepth = 2;
     [SerializeField] private int maxLimbs = 10;
-    // private readonly List<string> orderedPositioning = new List<string>{"on the head","on the right arm","on the left arm","on the left leg","on the right leg"};
-    private readonly List<string> orderedPositioning = new List<string>{"on the right leg","on the left leg","on the left arm","on the right arm","on the head"};
+    private readonly List<string> orderedPositioning = new List<string>{"on the head","on the right arm","on the left arm","on the left leg","on the right leg"};
 
     public List<string> OrderedPositioning => orderedPositioning;
 
@@ -26,6 +25,7 @@ public class GameManager : Singleton<GameManager>
     private int lieCounter = 0;
     private CorpseEditorManager corpseManager;
     private float partialMatch = 0;
+    private bool completeMatch = false;
 
     public string TargetCorpse => targetCorpse;
 
@@ -92,7 +92,13 @@ public class GameManager : Singleton<GameManager>
             branch.SetPositioning(limbIndex);
             targetLimbs.Add(branch);
             branchLimbs.Remove(branch);
-            var matchTree = $"{layer}: <_{branch.GetName()}<";
+            var matchTree = $"{layer}-";
+            if (layer == 0)
+            {
+                matchTree = matchTree + (branch.GetPositioning() == "" ? "unknown" : branch.GetPositioning());   
+            }
+            matchTree = matchTree + $": <_{branch.GetName()}<";
+            // var matchTree = $"{layer}: <_{branch.GetName()}<";
             for (var i = 0; i < branch.GetLinkNumber(); i++)
             {
                 if(currentLimbs>=maxLimbs || Random.Range(0, 2) == 0) continue;
@@ -114,7 +120,13 @@ public class GameManager : Singleton<GameManager>
             leaf.SetPositioning(limbIndex);
             targetLimbs.Add(leaf);
             leafLimbs.Remove(leaf);
-            var matchTree = $"{layer}: <_{leaf.GetName()}<";
+            var matchTree = $"{layer}-";
+            if (layer == 0)
+            {
+                matchTree = matchTree + (leaf.GetPositioning() == "" ? "unknown" : leaf.GetPositioning());   
+            }
+            matchTree = matchTree + $": <_{leaf.GetName()}<";
+            // var matchTree = $"{layer}: <_{leaf.GetName()}<";
             return new Tuple<string, int>(matchTree, currentLimbs);
         }
     }
@@ -146,21 +158,18 @@ public class GameManager : Singleton<GameManager>
         targetLimbs = targetLimbs.OrderBy(a => new Guid()).ToList();
     }
     
-    public bool CorpsMatch(string currentTree)
-    {
-        return NormalizedString(targetCorpse).Equals(currentTree);
-    }
-    
     public string CorpsMatchSubTree(string currentCorpsTree)
     {
         float subtreeCounter = 0;
         var subtrees = NormalizedString(targetCorpse).Split('0').Where(s => s.Contains("_")).ToArray();
+        
         foreach (var subtree in subtrees)
         {
             if (currentCorpsTree.Contains(subtree)){ subtreeCounter++; }
         }
 
         partialMatch += subtreeCounter / subtrees.Length;
+        completeMatch = (subtreeCounter / subtrees.Length) == 1f;
         return $"{subtreeCounter} on {subtrees.Length}";
     }
 
@@ -191,7 +200,7 @@ public class GameManager : Singleton<GameManager>
     {
         var result = "";
         string currentCorpsTree = NormalizedString(corpseManager.MatchCorpString());
-        if (CorpsMatch(currentCorpsTree)) result += "<b>Well Done!</b><br>";
+        if (completeMatch) result += "<b>Well Done!</b><br>";
         result += "You got " + LibsMatchCounter(currentCorpsTree) + " limbs!<br>";
         result += "and " + CorpsMatchSubTree(currentCorpsTree) + " in the right position!<br>";
         EventManager.Instance.OnScoreCalculated.Invoke(partialMatch/2);
@@ -204,7 +213,7 @@ public class GameManager : Singleton<GameManager>
         if (Input.GetKeyDown(KeyCode.U))
         {
             string currentCorpsTree = NormalizedString(corpseManager.MatchCorpString());
-            Debug.Log("Corps"+CorpsMatch(currentCorpsTree));
+            Debug.Log("complete match"+completeMatch);
             Debug.Log("SingleLibs"+LibsMatchCounter(currentCorpsTree));
             Debug.Log("SubTree"+CorpsMatchSubTree(currentCorpsTree));
             Debug.Log("Current"+corpseManager.MatchCorpString());

@@ -56,13 +56,10 @@ public class CorpseEditorManager : MonoBehaviour
     public string MatchCorpString()
     {
         var matchString = "";
-        // bust.Linkables.Reverse();
         foreach (var limb in bust.Linkables)
         {
-            matchString = matchString + limb.PrintMatchTree();
+            matchString += limb.PrintMatchTree();
         }
-
-        // 0: <_Afro Hair>,0: <_Pigeon Head>[],0: <_Beard>,
         return matchString;
     }
 }
