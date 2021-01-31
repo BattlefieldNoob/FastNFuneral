@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: CthulhuHead
   m_EditorClassIdentifier: 
   objectName: Cthulhu Head
-  hazyDescriptions: []
-  linkNumber: 0
+  hazyDescriptions:
+  - Ancient One Visage
+  - Squid look
+  linkNumber: 3

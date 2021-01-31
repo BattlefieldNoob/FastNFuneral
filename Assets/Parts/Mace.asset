@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Mace
   m_EditorClassIdentifier: 
   objectName: Mace
-  hazyDescriptions: []
+  hazyDescriptions:
+  - Morningstar
+  - Cleric weapon
   linkNumber: 0

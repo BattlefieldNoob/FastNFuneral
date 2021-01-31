@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: HairLong
   m_EditorClassIdentifier: 
   objectName: Long Hairs
-  hazyDescriptions: []
+  hazyDescriptions:
+  - Long Mane
+  - Metalhead look
   linkNumber: 0

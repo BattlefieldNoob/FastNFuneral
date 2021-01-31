@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: ChickenLeg
   m_EditorClassIdentifier: 
   objectName: Chicken Leg
-  hazyDescriptions: []
+  hazyDescriptions:
+  - Leg from Kentucky
+  - Leg from the frier
   linkNumber: 0

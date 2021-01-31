@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Tentacle
   m_EditorClassIdentifier: 
   objectName: Tentacle
-  hazyDescriptions: []
+  hazyDescriptions:
+  - Squid touch
+  - Slippery hand
   linkNumber: 0

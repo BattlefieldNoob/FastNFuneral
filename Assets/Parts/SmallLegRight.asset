@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: SmallLegRight
   m_EditorClassIdentifier: 
   objectName: Right Small Leg
-  hazyDescriptions: []
+  hazyDescriptions:
+  - Childish leg
+  - Short look
   linkNumber: 0

@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: WizardHat
   m_EditorClassIdentifier: 
   objectName: Wizard Hat
-  hazyDescriptions: []
+  hazyDescriptions:
+  - Magical powers
+  - Mystical look
   linkNumber: 0
