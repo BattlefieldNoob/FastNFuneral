@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -20,10 +17,13 @@ public class Grabber : MonoBehaviour
 
     private Collider _collider;
 
+    private Transform cameraTransform;
+
     private void Start()
     {
         _collider = GetComponent<Collider>();
         _linkPointCollisionHandler.Disable();
+        cameraTransform = Camera.main.transform;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,6 +38,15 @@ public class Grabber : MonoBehaviour
 
             if (GrabCandidate != null && GrabCandidate != newGrabbable)
             {
+                var cameraPosition = cameraTransform.position;
+                var actualCandidateDistance = Vector3.Distance(cameraPosition, GrabCandidate.transform.position);
+
+                var newCandidateDistance = Vector3.Distance(cameraPosition, newGrabbable.transform.position);
+
+                if (actualCandidateDistance < newCandidateDistance)
+                    //dont change the actual candidate!
+                    return;
+
                 GrabCandidate.DoNotHighLight();
                 GrabCandidate = null;
             }
