@@ -69,7 +69,7 @@ public class GameManager : Singleton<GameManager>
         for (var index = 0; index < bustLinks; index++)
         {
             var limbsGenerated = GenerateRecursive(currentLimbs, index).Item1;
-            start += limbsGenerated + (limbsGenerated != "" ? "," : "");
+            start += limbsGenerated;
         }
 
         targetCorpse = start;
@@ -92,16 +92,14 @@ public class GameManager : Singleton<GameManager>
             targetLimbs.Add(branch);
             branchLimbs.Remove(branch);
             var matchTree = $"{layer}: <_{branch.GetName()}<";
-            matchTree = matchTree + "[";
             for (var i = 0; i < branch.GetLinkNumber(); i++)
             {
                 if(currentLimbs>=maxLimbs || Random.Range(0, 2) == 0) continue;
                 var ret = GenerateRecursive(currentLimbs, limbIndex, layer+1);
                 currentLimbs = ret.Item2;
-                matchTree = matchTree + ret.Item1 + (ret.Item1 != "" ? "," : "");
+                matchTree = matchTree + ret.Item1;
             }
 
-            matchTree = matchTree + "]";
             return new Tuple<string, int>(matchTree, currentLimbs);
         }
         else
@@ -149,13 +147,13 @@ public class GameManager : Singleton<GameManager>
     
     public bool CorpsMatch(string currentTree)
     {
-        return targetCorpse.Equals(corpseManager.MatchCorpString());
+        return NormalizedString(targetCorpse).Equals(currentTree);
     }
     
     public string CorpsMatchSubTree(string currentCorpsTree)
     {
         int subtreeCounter = 0;
-        var subtrees = targetCorpse.Split('0').Where(s => s.Contains("_")).ToArray();
+        var subtrees = NormalizedString(targetCorpse).Split('0').Where(s => s.Contains("_")).ToArray();
         foreach (var subtree in subtrees)
         {
             if (currentCorpsTree.Contains(subtree)){ subtreeCounter++; }
