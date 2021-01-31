@@ -60,6 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoObject: {fileID: 4578579223132143958}
   fadeInTime: 0.5
+  timeToLive: 4
 --- !u!1 &3938260346896887914
 GameObject:
   m_ObjectHideFlags: 0
