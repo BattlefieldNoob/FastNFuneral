@@ -25,6 +25,7 @@ public class GameManager : Singleton<GameManager>
     private int currentLimbIndex = 0;
     private int lieCounter = 0;
     private CorpseEditorManager corpseManager;
+    private float partialMatch = 0;
 
     public string TargetCorpse => targetCorpse;
 
@@ -152,13 +153,15 @@ public class GameManager : Singleton<GameManager>
     
     public string CorpsMatchSubTree(string currentCorpsTree)
     {
-        int subtreeCounter = 0;
+        float subtreeCounter = 0;
         var subtrees = NormalizedString(targetCorpse).Split('0').Where(s => s.Contains("_")).ToArray();
         foreach (var subtree in subtrees)
         {
             if (currentCorpsTree.Contains(subtree)){ subtreeCounter++; }
         }
-        return $"{subtreeCounter}/{subtrees.Length}";
+
+        partialMatch += subtreeCounter / subtrees.Length;
+        return $"{subtreeCounter} on {subtrees.Length}";
     }
 
     private string NormalizedString(string str)
@@ -168,14 +171,15 @@ public class GameManager : Singleton<GameManager>
     
     public string LibsMatchCounter(string currentCorpsTree)
     {
-        int counter = 0;
+        float counter = 0;
         var parts = CorpsPartsArray();
         foreach (var part in parts)
         {
             if (currentCorpsTree.Contains(part)) { counter++; };
         }
 
-        return $"{counter}/{parts.Length}";
+        partialMatch += counter / parts.Length;
+        return $"{counter} on {parts.Length}";
     }
 
     public string[] CorpsPartsArray()
@@ -183,8 +187,20 @@ public class GameManager : Singleton<GameManager>
         return NormalizedString(targetCorpse).Split('<').Where(s => s.Contains("_")).ToArray();
     }
 
+    public string GetScore()
+    {
+        var result = "";
+        string currentCorpsTree = NormalizedString(corpseManager.MatchCorpString());
+        if (CorpsMatch(currentCorpsTree)) result += "<b>Well Done!</b><br>";
+        result += "You got " + LibsMatchCounter(currentCorpsTree) + " limbs!<br>";
+        result += "and " + CorpsMatchSubTree(currentCorpsTree) + " in the right position!<br>";
+        EventManager.Instance.OnScoreCalculated.Invoke(partialMatch/2);
+        return result;
+    }
+
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.U))
         {
             string currentCorpsTree = NormalizedString(corpseManager.MatchCorpString());
@@ -194,5 +210,6 @@ public class GameManager : Singleton<GameManager>
             Debug.Log("Current"+corpseManager.MatchCorpString());
             Debug.Log("Target** "+targetCorpse);
         }
+#endif
     }
 }

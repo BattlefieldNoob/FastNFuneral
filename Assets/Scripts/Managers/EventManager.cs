@@ -25,6 +25,7 @@ public class EventManager : Singleton<EventManager>
 
     public FloatEvent OnCountdownEnd;
     public FloatEvent OnSpeedChange;
+    public FloatEvent OnScoreCalculated;
     public OnGrabEvent OnGrab;
     public OnReleaseEvent OnRelease;
 
@@ -34,6 +35,7 @@ public class EventManager : Singleton<EventManager>
         base.Awake();
         OnCountdownEnd = new FloatEvent();
         OnSpeedChange = new FloatEvent();
+        OnScoreCalculated = new FloatEvent();
         OnGrab = new OnGrabEvent();
         OnRelease = new OnReleaseEvent();
     }

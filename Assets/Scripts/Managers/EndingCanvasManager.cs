@@ -22,7 +22,7 @@ namespace Managers
 
         public void ShowScoreCanvas()
         {
-            //set score from gamemanager
+            scoreText.text = GameManager.Instance.GetScore();
             //play audio
             scoreCanvas.DOFade(1, .5f);
         }
