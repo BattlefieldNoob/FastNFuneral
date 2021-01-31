@@ -168,7 +168,7 @@ public class Grabber : MonoBehaviour
         _collider.enabled = true;
 
         //Debug.Log("Throw distance:"+chargeAmount);
-        if (chargeAmount > 0.5f)
+        if (chargeAmount > 0.15f)
         {
             //Throw!!!!
             Grabbed.ApplyForce(transform.forward * chargeAmount);
