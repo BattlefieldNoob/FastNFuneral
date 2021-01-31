@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ffa5628fbfcdc9428eac9d65eea8130, type: 3}
   m_Name: MuscleLeftArm
   m_EditorClassIdentifier: 
-  objectName: Left Muscular Arm
+  objectName: Muscular Left Arm
   hazyDescriptions:
-  - Proof he went to the gym
-  - Strong grip
+  - Amazing Left Jab
+  - Strong Left Grip
   linkNumber: 0

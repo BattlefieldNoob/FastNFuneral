@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ffa5628fbfcdc9428eac9d65eea8130, type: 3}
   m_Name: SmallLegLeft
   m_EditorClassIdentifier: 
-  objectName: Left Small Leg
+  objectName: Small Left  Leg
   hazyDescriptions:
-  - Childish leg
-  - Short look
+  - Childish Left Leg
+  - Stubby Left Leg
   linkNumber: 0
