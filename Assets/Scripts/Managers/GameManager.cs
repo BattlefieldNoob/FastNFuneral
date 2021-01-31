@@ -55,12 +55,12 @@ public class GameManager : Singleton<GameManager>
     {
         corpseManager = FindObjectOfType<CorpseEditorManager>();
         maxLimbs = Mathf.Clamp(maxLimbs, 1, branchLimbs.Count + leafLimbs.Count - 1);
+        Shuffle(branchLimbs);
+        Shuffle(leafLimbs);
         GenerateTargetCorpse();
         Debug.Log("TARGET: " + targetCorpse);
         //ShuffleLimbs();
         CountdownManager.Instance.StartCountdown();
-        branchLimbs = branchLimbs.OrderBy(a => new Guid()).ToList();
-        leafLimbs = leafLimbs.OrderBy(a => new Guid()).ToList();
     }
 
     public void GenerateTargetCorpse()
@@ -81,7 +81,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (layer >= maxDepth) return new Tuple<string, int>("", currentLimbs);
         currentLimbs++;
-        if (Random.Range(0, 2) == 0)
+        if (Random.Range(0, 4) > 2 )
         {
             if (branchLimbs.Count <= 0)
             {
@@ -99,13 +99,13 @@ public class GameManager : Singleton<GameManager>
             }
             matchTree = matchTree + $": <_{branch.GetName()}<";
             // var matchTree = $"{layer}: <_{branch.GetName()}<";
-            for (var i = 0; i < branch.GetLinkNumber(); i++)
-            {
-                if(currentLimbs>=maxLimbs || Random.Range(0, 2) == 0) continue;
-                var ret = GenerateRecursive(currentLimbs, limbIndex, layer+1);
-                currentLimbs = ret.Item2;
-                matchTree = matchTree + ret.Item1;
-            }
+            // for (var i = 0; i < branch.GetLinkNumber(); i++)
+            // {
+            //     if(currentLimbs>=maxLimbs || Random.Range(0, 2) == 0) continue;
+            //     var ret = GenerateRecursive(currentLimbs, limbIndex, layer+1);
+            //     currentLimbs = ret.Item2;
+            //     matchTree = matchTree + ret.Item1;
+            // }
 
             return new Tuple<string, int>(matchTree, currentLimbs);
         }
@@ -155,7 +155,7 @@ public class GameManager : Singleton<GameManager>
     private void ShuffleLimbs()
     {
         currentLimbIndex = 0;
-        targetLimbs = targetLimbs.OrderBy(a => new Guid()).ToList();
+        Shuffle(targetLimbs);
     }
     
     public string CorpsMatchSubTree(string currentCorpsTree)
@@ -220,5 +220,16 @@ public class GameManager : Singleton<GameManager>
             Debug.Log("Target** "+targetCorpse);
         }
 #endif
+    }
+    
+    public static void Shuffle(List<LimbScriptableObject> list) {
+        var count = list.Count;
+        var last = count - 1;
+        for (var i = 0; i < last; ++i) {
+            var r = Random.Range(i, count);
+            var tmp = list[i];
+            list[i] = list[r];
+            list[r] = tmp;
+        }
     }
 }

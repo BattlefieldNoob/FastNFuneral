@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1803064555651768064
 Transform:
@@ -101,7 +101,7 @@ LightProbeGroup:
   - {x: 10.057617, y: 1, z: -11.44314}
   - {x: 10.057617, y: -1, z: -11.44314}
   - {x: 1.1850572, y: 1, z: -11.44314}
-  - {x: 1.1850572, y: -1, z: -11.44314}
+  - {x: 1.1850572, y: -0.6156757, z: -11.44314}
   - {x: 3.3899279, y: 1, z: -11.44314}
   - {x: 3.3899279, y: -1, z: -11.44314}
   - {x: 6.313493, y: 1, z: -11.44314}
@@ -111,13 +111,22 @@ LightProbeGroup:
   - {x: 10.057617, y: 1, z: -13.746977}
   - {x: 10.057617, y: -1, z: -13.746977}
   - {x: 1.1850572, y: 1, z: -13.746977}
-  - {x: 1.1850572, y: -1, z: -13.746977}
+  - {x: 1.1850572, y: -0.6244457, z: -13.746977}
   - {x: 3.3899279, y: 1, z: -13.746977}
   - {x: 3.3899279, y: -1, z: -13.746977}
   - {x: 6.313493, y: 1, z: -13.746977}
   - {x: 6.313493, y: -1, z: -13.746977}
   - {x: 8.277369, y: 1, z: -13.746977}
   - {x: 8.277369, y: -1, z: -13.746977}
+  - {x: 1.1850572, y: 0.29685175, z: -13.746977}
+  - {x: 1.1850572, y: 0.29685175, z: -11.760497}
+  - {x: 2.3740082, y: 0.29685175, z: -12.686899}
+  - {x: 1.1850572, y: 0.29685175, z: -12.686899}
+  - {x: 2.3740082, y: 0.29685175, z: -14.512184}
+  - {x: 2.3740082, y: 0.29685175, z: -10.841492}
+  - {x: 2.590654, y: -0.6156757, z: -11.499799}
+  - {x: 2.590654, y: -0.6156757, z: -12.53394}
+  - {x: 2.590654, y: -0.6156757, z: -13.734963}
   m_Dering: 1
 --- !u!1 &4599858887566840190
 GameObject:
@@ -134,7 +143,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4599858887566840128
 Transform:
@@ -227,7 +236,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4599858887905073570
 Transform:
@@ -289,7 +298,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -320,7 +329,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4599858887927592200
 Transform:
@@ -384,7 +393,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4599858888003428918
 Transform:
@@ -476,7 +485,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4599858888105791497
 Transform:
@@ -518,7 +527,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4599858888514335041
 Transform:
@@ -582,7 +591,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4599858888828100314
 Transform:
@@ -649,7 +658,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -675,7 +684,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4599858888862290095
 Transform:
@@ -742,13 +751,13 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 7.9182765e+34, y: 1.7486412e+25, z: 7.49026e+11, w: 7e-45}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -768,7 +777,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4599858889378070103
 Transform:
@@ -861,7 +870,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4599858889413151371
 Transform:
@@ -954,7 +963,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4599858889427856579
 Transform:
