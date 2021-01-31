@@ -7,7 +7,7 @@ public class Linkable : MonoBehaviour
     [SerializeField] private LimbScriptableObject limbInfo;
     private List<Linkable> _linkables = new List<Linkable>();
     private Rigidbody _rigidbody;
-
+    public string LimbPosition => limbInfo.GetPositioning();
     public List<Linkable> Linkables => _linkables;
 
     private LinkPoint primaryLinkedWith;
@@ -79,18 +79,20 @@ public class Linkable : MonoBehaviour
 
     public string PrintMatchTree(int layer = 0)
     {
-        var matchTree = $"{layer}: <_{limbInfo.name}<";
-        // var matchTree = $"{layer}: <_{gameObject.name}<";
+        var matchTree = $"{layer}-";
+        if (layer == 0)
+        {
+            matchTree += LimbPosition == "" ? $"unknown" : $"{LimbPosition}";   
+        }
+        matchTree += $": <_{limbInfo.name}<";
         if (Linkables.Count < 1)
         {
             return matchTree;
         }
-        // matchTree = matchTree + "[";
         foreach (var linkable in Linkables)
         {
             matchTree += linkable.PrintMatchTree(layer+1);
         }
-        // matchTree = matchTree + "]";
         return matchTree;
     }
 }

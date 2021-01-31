@@ -30,8 +30,8 @@ public class Grabber : MonoBehaviour
     {
         if (!other.CompareTag("LinkPoint") && other.attachedRigidbody != null && other.attachedRigidbody.CompareTag("Grabbable") && Grabbed == null)
         {
-            Debug.Log($"Collided with {other.attachedRigidbody.name}");
-            Debug.Log($"Model {other.name}");
+            // Debug.Log($"Collided with {other.attachedRigidbody.name}");
+            // Debug.Log($"Model {other.name}");
             var newGrabbable = other.attachedRigidbody.GetComponent<Grabbable>();
 
             if (newGrabbable == null)
@@ -46,7 +46,7 @@ public class Grabber : MonoBehaviour
 
                 if (actualCandidateDistance < newCandidateDistance)
                 {
-                    Debug.Log("ignoring!");
+                    // Debug.Log("ignoring!");
                     //dont change the actual candidate!
                     return;
                 }
