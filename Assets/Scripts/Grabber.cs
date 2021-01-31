@@ -129,6 +129,7 @@ public class Grabber : MonoBehaviour
         Grabbed.transform.SetParent(transform);
         Grabbed.transform.localRotation = Quaternion.identity;
         Grabbed.transform.localPosition = Vector3.zero + _handDeltaPosition;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SoundFX/SFX_Grab");
         EventManager.Instance.OnGrab.Invoke();
         _collider.enabled = false;
         _linkPointCollisionHandler.Enable();
@@ -150,6 +151,8 @@ public class Grabber : MonoBehaviour
         Grabbed = null;
         EventManager.Instance.OnRelease.Invoke();
         _collider.enabled = true;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SoundFX/SFX_Attach");
+
 
         linkable.LinkTo(LinkCandidate);
         _linkPointCollisionHandler.Disable();
@@ -173,6 +176,8 @@ public class Grabber : MonoBehaviour
             //Throw!!!!
             Grabbed.ApplyForce(transform.forward * chargeAmount);
         }
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SoundFX/SFX_Throw");
 
         Grabbed = null;
         throwChargeStart = 0;
