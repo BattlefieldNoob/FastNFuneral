@@ -36,21 +36,30 @@ public class LinkPoint : MonoBehaviour
     {
         if (_grabbable == null)
         {
-            if(!_isLinked)
+            if (!_isLinked)
                 _canvasGroup.alpha = 1;
         }
         else
         {
-            if (!_isLinked && !_grabbable.grabbed && !_linkable.IsLinked)
-                _canvasGroup.alpha = 1;
+            if (!_isLinked && !_grabbable.grabbed)
+            {
+                if (!IAmPrimaryLinkPoint() && _linkable.primaryLinkPoint._isLinked)
+                {
+                    _canvasGroup.alpha = 1;
+                }
+                else if (!_linkable.IsLinked)
+                {
+                    _canvasGroup.alpha = 1;
+                }
+            }
         }
     }
-    
+
     public void SetAsLinked()
     {
         _isLinked = true;
     }
-    
+
     public void SetAsReleased()
     {
         _isLinked = false;
@@ -60,7 +69,7 @@ public class LinkPoint : MonoBehaviour
     {
         _collider.enabled = false;
     }
-    
+
     public void Enable()
     {
         _collider.enabled = true;
@@ -72,9 +81,11 @@ public class LinkPoint : MonoBehaviour
     {
         highlight.color = Color.white;
     }
-    
+
     public void HighLight()
     {
         highlight.color = Color.red;
     }
+
+    private bool IAmPrimaryLinkPoint() => _linkable.primaryLinkPoint == this;
 }
