@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Linkable : MonoBehaviour
 {
-    [SerializeField] private LinkPoint primaryLinkPoint;
+    [SerializeField] public LinkPoint primaryLinkPoint;
     [SerializeField] private LimbScriptableObject limbInfo;
     private List<Linkable> _linkables = new List<Linkable>();
     private Rigidbody _rigidbody;
@@ -44,6 +44,7 @@ public class Linkable : MonoBehaviour
 
         primaryLinkedWith = linkToObject;
         primaryLinkedWith.SetAsLinked();
+        primaryLinkPoint.SetAsLinked();
         transform.SetParent(primaryLinkedWith.GetAttachJoint());
         transform.localRotation = primaryLinkPoint.GetAttachJoint().localRotation;
         transform.localPosition = Vector3.zero;
@@ -53,40 +54,43 @@ public class Linkable : MonoBehaviour
         linkToObject.GetComponentInParent<Linkable>().AddLinked(this);
     }
 
-    public void Unlink()
+    public void Unlink(bool origin = true)
     {
         if (primaryLinkedWith == null)
             return;
         
         foreach (var linkable in _linkables)
         {
-            linkable.Unlink();
+            linkable.Unlink(false);
         }
 
         _linkables.Clear();
-        //primaryLinkedWith.GetComponentInParent<Linkable>().RemoveLinked(this);
+        if (origin)
+        {
+            primaryLinkedWith.GetComponentInParent<Linkable>().RemoveLinked(this);   
+        }
         primaryLinkPoint.Enable();
         primaryLinkedWith.Enable();
         primaryLinkedWith.SetAsReleased();
         primaryLinkedWith = null;
         _rigidbody.isKinematic = false;
         transform.SetParent(null);
-        
     }
 
     public string PrintMatchTree(int layer = 0)
     {
-        var matchTree = $"{layer}: <_{gameObject.name}<";
+        var matchTree = $"{layer}: <_{limbInfo.name}<";
+        // var matchTree = $"{layer}: <_{gameObject.name}<";
         if (Linkables.Count < 1)
         {
-            return matchTree + "[]";;
+            return matchTree;
         }
-        matchTree = matchTree + "[";
+        // matchTree = matchTree + "[";
         foreach (var linkable in Linkables)
         {
-            matchTree += linkable.PrintMatchTree(layer+1)+",";
+            matchTree += linkable.PrintMatchTree(layer+1);
         }
-        matchTree = matchTree + "]";
+        // matchTree = matchTree + "]";
         return matchTree;
     }
 }
