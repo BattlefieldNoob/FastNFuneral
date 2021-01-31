@@ -80,6 +80,12 @@ public class AudioManager : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        _snapshotInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        _musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        _ambienceInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
 
 
 }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ffa5628fbfcdc9428eac9d65eea8130, type: 3}
   m_Name: LeftLeg
   m_EditorClassIdentifier: 
-  objectName: Left Leg
+  objectName: Basic Left Leg
   hazyDescriptions:
-  - Common Leg
-  - Simple Leg
+  - Common Left Leg
+  - Normal Left Leg
   linkNumber: 0
