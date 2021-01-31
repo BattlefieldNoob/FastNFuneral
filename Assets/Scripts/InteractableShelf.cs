@@ -13,9 +13,12 @@ public class InteractableShelf : MonoBehaviour
 
     private bool isOpened = false;
 
+    private Rigidbody _rigidbody;
+
     private void Start()
     {
         _outline = GetComponent<Outline>();
+        _rigidbody = GetComponent<Rigidbody>();
         _outline.enabled = false;
         transform.position = new Vector3(defaultXValue, transform.position.y, transform.position.z);
     }
@@ -34,18 +37,18 @@ public class InteractableShelf : MonoBehaviour
 
     public void Open()
     {
-        if(DOTween.IsTweening(transform))
+        if(DOTween.IsTweening(_rigidbody))
             return;
 
-        transform.DOMoveX(openedXValue,openCloseDuration).OnComplete(() => isOpened = true);;
+        _rigidbody.DOMoveX(openedXValue,openCloseDuration).OnComplete(() => isOpened = true);
     }
     
     public void Close()
     {
-        if(DOTween.IsTweening(transform))
+        if(DOTween.IsTweening(_rigidbody))
             return;
 
-        transform.DOMoveX(defaultXValue, openCloseDuration).OnComplete(() => isOpened = false);
+        _rigidbody.DOMoveX(defaultXValue, openCloseDuration).OnComplete(() => isOpened = false);
     }
     
     
