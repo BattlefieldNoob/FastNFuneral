@@ -54,41 +54,43 @@ public class Linkable : MonoBehaviour
         linkToObject.GetComponentInParent<Linkable>().AddLinked(this);
     }
 
-    public void Unlink()
+    public void Unlink(bool origin = true)
     {
         if (primaryLinkedWith == null)
             return;
         
         foreach (var linkable in _linkables)
         {
-            linkable.Unlink();
+            linkable.Unlink(false);
         }
 
         _linkables.Clear();
-        //primaryLinkedWith.GetComponentInParent<Linkable>().RemoveLinked(this);
+        if (origin)
+        {
+            primaryLinkedWith.GetComponentInParent<Linkable>().RemoveLinked(this);   
+        }
         primaryLinkPoint.Enable();
         primaryLinkedWith.Enable();
         primaryLinkedWith.SetAsReleased();
-        primaryLinkPoint.SetAsReleased();
         primaryLinkedWith = null;
         _rigidbody.isKinematic = false;
         transform.SetParent(null);
-        
     }
 
     public string PrintMatchTree(int layer = 0)
     {
-        var matchTree = $"{layer}: <_{gameObject.name}<";
+        var matchTree = $"{layer}: <_{limbInfo.name}<";
+        // var matchTree = $"{layer}: <_{gameObject.name}<";
         if (Linkables.Count < 1)
         {
-            return matchTree + "[]";;
+            return matchTree;
         }
-        matchTree = matchTree + "[";
+        // matchTree = matchTree + "[";
         foreach (var linkable in Linkables)
         {
-            matchTree += linkable.PrintMatchTree(layer+1)+",";
+            matchTree += linkable.PrintMatchTree(layer+1);
         }
-        matchTree = matchTree + "]";
+        // matchTree = matchTree + "]";
         return matchTree;
     }
 }

@@ -232,6 +232,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HumanHead
       objectReference: {fileID: 0}
+    - target: {fileID: 5425991223623518937, guid: 3755454c6207890459135a9b68a98fd4, type: 3}
+      propertyPath: limbInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: 88d5fc26531e66d48be955d8e1159363, type: 2}
     - target: {fileID: 5425991223623518939, guid: 3755454c6207890459135a9b68a98fd4, type: 3}
       propertyPath: m_RootOrder
       value: 0
