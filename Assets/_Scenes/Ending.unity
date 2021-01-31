@@ -461,6 +461,7 @@ GameObject:
   - component: {fileID: 99587271}
   - component: {fileID: 99587270}
   - component: {fileID: 99587274}
+  - component: {fileID: 99587275}
   m_Layer: 5
   m_Name: EndigCanvas
   m_TagString: Untagged
@@ -563,6 +564,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backToMenu: {fileID: 684691155}
   sceneToLoad: MainMenu
+  scoreCanvas: {fileID: 1744872428}
+  scoreText: {fileID: 1744872426}
+--- !u!114 &99587275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99587269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 66226679b46f761499846d4c110366fb, type: 2}
+    - {fileID: 11400000, guid: 4137b86728f4dae4bb23c62d09440a8c, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 99587274}
+          m_TargetAssemblyTypeName: Managers.EndingCanvasManager, Assembly-CSharp
+          m_MethodName: ShowScoreCanvas
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls: []
 --- !u!4 &142310911 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c343469a939054047b236edbc513fd09, type: 3}
@@ -1757,19 +1793,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 4137b86728f4dae4bb23c62d09440a8c, type: 2}
     m_Events:
     - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1188225296}
-          m_TargetAssemblyTypeName: EndingManager, Assembly-CSharp
-          m_MethodName: ShowResult
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1188225296}
@@ -2912,6 +2936,8 @@ PlayableDirector:
     value: {fileID: 1608915245}
   - key: {fileID: -8948334837366768216, guid: 71314bca01f470d419b98cc01172672d, type: 2}
     value: {fileID: 1188225295}
+  - key: {fileID: 556725484445796393, guid: 71314bca01f470d419b98cc01172672d, type: 2}
+    value: {fileID: 99587275}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1617311461 stripped
@@ -2997,6 +3023,7 @@ GameObject:
   - component: {fileID: 1744872425}
   - component: {fileID: 1744872427}
   - component: {fileID: 1744872426}
+  - component: {fileID: 1744872428}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -3120,6 +3147,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744872424}
   m_CullTransparentMesh: 1
+--- !u!225 &1744872428
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744872424}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!4 &1758888742 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4326583017197712467, guid: 4ba8941aaa7660b4ab8d0947dce6a7d4, type: 3}
