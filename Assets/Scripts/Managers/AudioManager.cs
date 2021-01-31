@@ -23,8 +23,7 @@ public class AudioManager : MonoBehaviour
     private FMOD.Studio.EventInstance _snapshotInstance;
     private FMOD.Studio.EventInstance _musicInstance;
     private FMOD.Studio.EventInstance _ambienceInstance;
-
-
+    
     private void Start()
     {
         _snapshotInstance = RuntimeManager.CreateInstance(_churchSnapshotRef);
