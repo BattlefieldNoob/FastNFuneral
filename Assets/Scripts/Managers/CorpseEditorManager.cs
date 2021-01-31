@@ -26,6 +26,7 @@ public class CorpseEditorManager : Singleton<CorpseEditorManager>
     {
 
         var matchString = "";
+        // bust.Linkables.Reverse();
         foreach (var limb in bust.Linkables)
         {
             matchString = matchString + limb.PrintMatchTree() + ',';

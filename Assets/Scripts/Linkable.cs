@@ -68,15 +68,16 @@ public class Linkable : MonoBehaviour
         primaryLinkPoint.Enable();
         primaryLinkedWith.Enable();
         primaryLinkedWith.SetAsReleased();
+        primaryLinkedWith.GetComponentInParent<Linkable>().RemoveLinked(this);
         primaryLinkedWith = null;
         _rigidbody.isKinematic = false;
         transform.SetParent(null);
-        
     }
 
     public string PrintMatchTree(int layer = 0)
     {
-        var matchTree = $"{layer}: <_{gameObject.name}<";
+        var matchTree = $"{layer}: <_{limbInfo.name}<";
+        // var matchTree = $"{layer}: <_{gameObject.name}<";
         if (Linkables.Count < 1)
         {
             return matchTree + "[]";;
