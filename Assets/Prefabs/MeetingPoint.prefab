@@ -127,8 +127,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: UGA BUGA
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40242c45387955d4b8c2b59e2952c049, type: 2}
-  m_sharedMaterial: {fileID: 8305494363384969665, guid: 40242c45387955d4b8c2b59e2952c049, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c55ea6f8fdf7e004781f3353c7fb5d60, type: 2}
+  m_sharedMaterial: {fileID: 8305494363384969665, guid: c55ea6f8fdf7e004781f3353c7fb5d60, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

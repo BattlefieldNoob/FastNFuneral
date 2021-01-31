@@ -26,11 +26,12 @@ public class Grabber : MonoBehaviour
         cameraTransform = Camera.main.transform;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if ((other.CompareTag("Grabbable") ||
-             (other.attachedRigidbody != null && other.attachedRigidbody.CompareTag("Grabbable"))) && Grabbed == null)
+        if (!other.CompareTag("LinkPoint") && other.attachedRigidbody != null && other.attachedRigidbody.CompareTag("Grabbable") && Grabbed == null)
         {
+            Debug.Log($"Collided with {other.attachedRigidbody.name}");
+            Debug.Log($"Model {other.name}");
             var newGrabbable = other.attachedRigidbody.GetComponent<Grabbable>();
 
             if (newGrabbable == null)
@@ -44,8 +45,11 @@ public class Grabber : MonoBehaviour
                 var newCandidateDistance = Vector3.Distance(cameraPosition, newGrabbable.transform.position);
 
                 if (actualCandidateDistance < newCandidateDistance)
+                {
+                    Debug.Log("ignoring!");
                     //dont change the actual candidate!
                     return;
+                }
 
                 GrabCandidate.DoNotHighLight();
                 GrabCandidate = null;
@@ -75,12 +79,26 @@ public class Grabber : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if ((other.CompareTag("Grabbable") ||
-             (other.attachedRigidbody != null && other.attachedRigidbody.CompareTag("Grabbable"))))
+        if (!other.CompareTag("LinkPoint") && other.attachedRigidbody != null && other.attachedRigidbody.CompareTag("Grabbable"))
         {
+            
+            Debug.Log($"Removing with {other.attachedRigidbody.name}");
+            Debug.Log($"Removing with {other.name}");
             if (GrabCandidate == null)
                 return;
-            //Debug.Log("Removing linkpoint!");
+            
+            var toremove = other.attachedRigidbody.GetComponent<Grabbable>();
+            if (toremove != null)
+            {
+                if (!toremove.Equals(GrabCandidate))
+                {
+                    Debug.Log("JUST!");
+                    //just remove highlight
+                    toremove.DoNotHighLight();
+                    return;
+                }
+            }
+            
             GrabCandidate.DoNotHighLight();
             GrabCandidate = null;
         }
