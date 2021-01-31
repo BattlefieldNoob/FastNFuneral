@@ -9,9 +9,11 @@ public class MeetingPointController : MonoBehaviour
 {
     [SerializeField] private GameObject infoObject;
     [SerializeField] private float fadeInTime;
+    [SerializeField] private float timeToLive;
     private TMP_Text _infoText;
     private CanvasGroup _infoCanvasGroup;
     private Transform _player;
+    private bool isShowing;
 
     private void Start()
     {
@@ -31,20 +33,22 @@ public class MeetingPointController : MonoBehaviour
     {
         cg.interactable = fadeIn;
         cg.blocksRaycasts = fadeIn;
-        cg.DOFade(fadeIn ? 1 : 0, time);
+        cg.DOFade(fadeIn ? 1 : 0, time).OnComplete(()=>isShowing = fadeIn);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player") || isShowing) return;
+        isShowing = true;
         var phrase = GameManager.Instance.RandomSentence();
         _infoText.text = phrase;
         FadeCanvasGroup(_infoCanvasGroup, true, fadeInTime);
+        StartCoroutine(WaitAndHide());
     }
-
-    private void OnTriggerExit(Collider other)
+    
+    private IEnumerator WaitAndHide()
     {
-        if (!other.CompareTag("Player")) return;
+        yield return new WaitForSeconds(timeToLive);
         FadeCanvasGroup(_infoCanvasGroup, false, fadeInTime * 2);
     }
 
