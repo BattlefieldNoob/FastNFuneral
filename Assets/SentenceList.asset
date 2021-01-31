@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sentences:
   - 'I Remember  he was so proud about his {0} {1} '
-  - '{0} was his thing'
+  - The {0} was his thing
   - That {0} {1} will always remind me about him
   - We laughed a lot about his {0}!
   - Remember his joke about the {0} {1}?
