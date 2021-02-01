@@ -42,6 +42,10 @@ namespace Managers
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            
+#if UNITY_WEBGL
+            exitButton.gameObject.SetActive(false);
+#endif
         }
 
         private void FadeCanvasGroup(CanvasGroup cg, bool fadeIn, float time)
