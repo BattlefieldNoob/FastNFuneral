@@ -71,6 +71,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: efe43f1a73937384f9e4d8632e09d474, type: 2}
   - {fileID: 11400000, guid: f34d36ccfdd88414e85f07749abb3b26, type: 2}
   - {fileID: 11400000, guid: a4705607c4b4cab4ba165187e53b0dcc, type: 2}
+  - {fileID: 11400000, guid: eb98654206f92f24e98acb60af570f54, type: 2}
+  - {fileID: 11400000, guid: 7a35ef047b4a8f84988f75f34a1038ca, type: 2}
+  - {fileID: 11400000, guid: 799f8a46076724147908ef71b358b6c2, type: 2}
   bustLinks: 5
   maxDepth: 2
   maxLimbs: 5
