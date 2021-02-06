@@ -26,6 +26,7 @@ public class GameManager : Singleton<GameManager>
     private CorpseEditorManager corpseManager;
     private float partialMatch = 0;
     private bool completeMatch = false;
+    public string EndingSceneName="Ending";
 
     public string TargetCorpse => targetCorpse;
 
@@ -33,8 +34,7 @@ public class GameManager : Singleton<GameManager>
     {
         EventManager.Instance.OnCountdownEnd.AddListener(remaining =>
         {
-            // Do Final Cutscene
-            Debug.Log("[GameManager] Restart Game");
+            ChangeSceneAndFadeManager.Instance.DoChangeScene(EndingSceneName);
         });
         if (SceneManager.GetActiveScene().name == "Main")
         {
