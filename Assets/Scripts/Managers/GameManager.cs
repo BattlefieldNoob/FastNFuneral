@@ -199,6 +199,8 @@ public class GameManager : Singleton<GameManager>
 
     public string GetScore()
     {
+        if (corpseManager == null)
+            return "Testing";
         var result = "";
         string currentCorpsTree = NormalizedString(corpseManager.MatchCorpString());
         if (completeMatch) result += "<b>Well Done!</b><br>";

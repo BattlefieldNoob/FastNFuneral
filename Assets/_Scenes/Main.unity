@@ -1076,9 +1076,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 217846981951407739, guid: d4082ee67c6aa874eb480c128731e76e, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 217846981951407739, guid: d4082ee67c6aa874eb480c128731e76e, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 395088488431442525, guid: d4082ee67c6aa874eb480c128731e76e, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1998330137292436385, guid: d4082ee67c6aa874eb480c128731e76e, type: 3}
+      propertyPath: m_Spring.spring
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8137881152908642240, guid: d4082ee67c6aa874eb480c128731e76e, type: 3}
       propertyPath: m_Name

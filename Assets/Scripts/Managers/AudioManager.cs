@@ -20,9 +20,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] [EventRef] private string _morgueAmbienceRef;
     
 
-    private FMOD.Studio.EventInstance _snapshotInstance;
-    private FMOD.Studio.EventInstance _musicInstance;
-    private FMOD.Studio.EventInstance _ambienceInstance;
+    public FMOD.Studio.EventInstance _snapshotInstance;
+    public FMOD.Studio.EventInstance _musicInstance;
+    public FMOD.Studio.EventInstance _ambienceInstance;
     
     private void Start()
     {

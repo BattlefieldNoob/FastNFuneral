@@ -82,8 +82,8 @@ public class Grabber : MonoBehaviour
         if (!other.CompareTag("LinkPoint") && other.attachedRigidbody != null && other.attachedRigidbody.CompareTag("Grabbable"))
         {
             
-            Debug.Log($"Removing with {other.attachedRigidbody.name}");
-            Debug.Log($"Removing with {other.name}");
+            //Debug.Log($"Removing with {other.attachedRigidbody.name}");
+            //Debug.Log($"Removing with {other.name}");
             if (GrabCandidate == null)
                 return;
             
@@ -92,7 +92,7 @@ public class Grabber : MonoBehaviour
             {
                 if (!toremove.Equals(GrabCandidate))
                 {
-                    Debug.Log("JUST!");
+                    //Debug.Log("JUST!");
                     //just remove highlight
                     toremove.DoNotHighLight();
                     return;

@@ -63,10 +63,10 @@ namespace Managers
 
             VolumeMuteIcon.enabled = !_fmodEnabled;
             VolumeOnIcon.enabled = _fmodEnabled;
-            
         }
 
         bool _fmodEnabled = true;
+        bool firstPlayOccurred = false;
 
         public void ToggleAudio()
         {
@@ -79,13 +79,17 @@ namespace Managers
             }
             else
             {
+                if (!RuntimeManager.HasBanksLoaded)
+                    return;
+                
                 Debug.Log("Resume");
                 RuntimeManager.PauseAllEvents(false);
                 var result = RuntimeManager.CoreSystem.mixerResume();
                 Debug.Log(result);
 #if UNITY_WEBGL
-                if (!MainMenuSoundtrack.IsPlaying())
+                if (!MainMenuSoundtrack.IsPlaying() || !firstPlayOccurred)
                 {
+                    firstPlayOccurred = true;
                     MainMenuSoundtrack.Play();
                 }
 #endif
