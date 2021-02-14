@@ -33,6 +33,7 @@ namespace Managers
             exitButton.gameObject.SetActive(false);
             ToggleAudio(); //set audio as "Suspended"
             MainMenuSoundtrack.PlayEvent = EmitterGameEvent.None;
+            MainMenuSoundtrack.Stop();
 #endif
         }
 
