@@ -32,6 +32,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        
         EventManager.Instance.OnCountdownEnd.AddListener(remaining =>
         {
             ChangeSceneAndFadeManager.Instance.DoChangeScene(EndingSceneName);

@@ -207,7 +207,7 @@ MonoBehaviour:
   sourceProjectPath: 
   sourceBankPath: FMODBanks/Desktop
   SourceBankPathUnformatted: 
-  AutomaticEventLoading: 1
+  AutomaticEventLoading: 0
   BankLoadType: 0
   AutomaticSampleLoading: 0
   EncryptionKey: 

@@ -469,6 +469,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88b552e72c2db464a9bc3eff1c0f5325, type: 3}
+--- !u!114 &509024691 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1239736283696239129, guid: cc55a23867e7f0d40957dc5bd5939074, type: 3}
+  m_PrefabInstance: {fileID: 6903039252522782497}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &517613434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1069,6 +1080,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5055677742445534580, guid: 61d764f806670f7499f952d5fe7effcf, type: 3}
+      propertyPath: MainMenuSoundtrack
+      value: 
+      objectReference: {fileID: 509024691}
     - target: {fileID: 5055677742445534581, guid: 61d764f806670f7499f952d5fe7effcf, type: 3}
       propertyPath: m_Pivot.x
       value: 0

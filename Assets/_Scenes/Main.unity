@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17063393, g: 0.21163477, b: 0.2752196, a: 1}
+  m_IndirectSpecularColor: {r: 0.18268664, g: 0.22568029, b: 0.29133773, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1309,6 +1309,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4599858887566840191, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599858887927592199, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599858888003428917, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4599858888105791496, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
       propertyPath: m_Name
       value: Lights
@@ -1357,6 +1369,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4599858888514335040, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4599858888828100313, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
       propertyPath: m_BoundingSphereOverride.w
       value: 11.796799
@@ -1372,6 +1388,14 @@ PrefabInstance:
     - target: {fileID: 4599858888828100313, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
       propertyPath: m_BoundingSphereOverride.z
       value: 0.27457133
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599858889378070102, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599858889427856578, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}
+      propertyPath: m_Intensity
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96ccb08d966c40349810b9500cbc5518, type: 3}

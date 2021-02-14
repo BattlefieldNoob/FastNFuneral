@@ -3,8 +3,8 @@
     "Components": [
         {
             "$type": "Unity.Build.Common.GeneralSettings, Unity.Build",
-            "ProductName": "Product Name",
-            "CompanyName": "FastFuneral",
+            "ProductName": "FastNFuneral",
+            "CompanyName": "GGJ21",
             "Version": "1.0.0"
         },
         {
