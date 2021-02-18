@@ -1,0 +1,19 @@
+{
+    "name": "BuildConfigManager",
+    "rootNamespace": "",
+    "references": [
+        "GUID:363a3288c06c1c14cbbeedbda31215f9",
+        "GUID:c58d5becdf89da04c8021669b1e36308"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
