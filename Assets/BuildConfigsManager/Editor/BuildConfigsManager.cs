@@ -6,6 +6,17 @@ using UnityEngine;
 
 public class BuildConfigsManager : MonoBehaviour
 {
+    
+    const string k_CurrentActionIndexKey = "BuildConfigurationInspector.CurrentActionIndex";
+
+    static int CurrentActionIndex
+    {
+        get => EditorPrefs.GetInt(k_CurrentActionIndexKey, 1);
+        set => EditorPrefs.SetInt(k_CurrentActionIndexKey, value);
+    }
+    
+    
+    
     [MenuItem(itemName: "BuildManager/Build Current Platform")]
     public static void BuildCurrentPlatform()
     {
@@ -28,6 +39,13 @@ public class BuildConfigsManager : MonoBehaviour
         Debug.Log("building:" + buildConfigs);
         if (buildConfigs.Length == 0)
             return false;
+
+
+        var oldActionIndex = CurrentActionIndex;
+        
+        Debug.Log("Setting BUILD");
+        CurrentActionIndex = 0;
+        
         foreach (var buildConfig in buildConfigs)
         {
             Debug.Log("FORRRRRRRRRRRRRRRRRR");
@@ -35,6 +53,8 @@ public class BuildConfigsManager : MonoBehaviour
             Debug.Log("FOR RESULT"+result);
         }
 
+        CurrentActionIndex = oldActionIndex;
+        
         return true;
     }
 
