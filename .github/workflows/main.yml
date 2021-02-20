@@ -22,11 +22,23 @@ jobs:
       run: |
         rm -f -r Builds
         
+    - name: Extract Unity version
+      id: unity_version_extract
+      run: |
+       echo "::set-output name=UNITY_VERSION::$(uvm detect)"
+
+    - name: Install Unity
+      run: |
+        uvm install2 -m webgl -m windows-mono -v ${{ steps.unity_version_extract.outputs.UNITY_VERSION }} /Applications/UnityInstalls/${{ steps.unity_version_extract.outputs.UNITY_VERSION }}
+       
+    - name: Select Unity Version
+      run: |
+        uvm clear
+        uvm use ${{ steps.unity_version_extract.outputs.UNITY_VERSION }}
+        
   build:
     runs-on: self-hosted
     needs: checkout_and_clean
-    env:
-      UNITY_VERSION: 2021.1.0b7
       
     strategy:
       matrix:
@@ -36,7 +48,7 @@ jobs:
     
     - name: Unity Build
       run: |
-        /Applications/Unity/Hub/Editor/$UNITY_VERSION/Unity.app/Contents/MacOS/Unity -quit -batchmode -nographics -logFile \
+        /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchmode -nographics -logFile \
           -projectPath ./ -executeMethod BuildConfigsManager.BuildCurrentPlatform -buildTarget ${{matrix.platform}}
     
     - name: Compress Build
